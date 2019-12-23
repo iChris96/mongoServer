@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express'
+import { tasksController } from '../controllers/tasksController'
 
 const router = Router();
 
@@ -9,24 +10,10 @@ import Task from '../models/Task';
 //CREATE TASK
 router.route('/create')
     .get(
-        (req: Request, res: Response) => {
-            res.render('tasks/create');
-        }
+        tasksController.createTaskGet
     )
     .post(
-        async (req: Request, res: Response) => {
-           console.log(req.body);
-           const { title, description } = req.body; //get data from form
-           //create a Schema for mongoose with form data
-           const newTaks = new Task({
-               title, description
-           })
-           console.log(newTaks);
-           //save schema to mongodb
-           await newTaks.save();
-
-           res.redirect('/tasks/list'); //res.send('saved');
-        }
+        tasksController.createTaskPost
     );
 
 //GET TASKS

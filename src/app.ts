@@ -1,7 +1,7 @@
 import express from 'express'
 import morgan from 'morgan' //listening http events
 import expressHandlebars from 'express-handlebars'
-import path from 'path' //path folders routes
+import path from 'path' //path join folders routes independently be linux or windows path
 import indexRoutes from './routes';
 import tasksRoutes from './routes/tasks'
 
@@ -19,7 +19,7 @@ class Application {
     settings(){
         //variables
         this.app.set('port', 3000); //its like a variable into app object
-        this.app.set('views', path.join(__dirname, 'views')); //__dirname -> actual directory
+        this.app.set('views', path.join(__dirname, 'views')); //__dirname -> actual directory //now node knows where /views directory is localized
 
         //handlebars
         //set engine
@@ -28,7 +28,7 @@ class Application {
             expressHandlebars({
                 layoutsDir: path.join(this.app.get('views'), 'layouts'),
                 partialsDir: path.join(this.app.get('views'), 'partials'),
-                defaultLayout: 'main',
+                defaultLayout: 'main', //html container for all views
                 extname: '.hbs'
             })
         );
@@ -39,7 +39,7 @@ class Application {
     middlewares(){
         this.app.use(morgan('dev'));
         this.app.use(express.json()); //app understands json
-        this.app.use(express.urlencoded({extended:false}))
+        this.app.use(express.urlencoded({extended:false})) //html form data interpreter
     }
 
     routes(){
