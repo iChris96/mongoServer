@@ -4,6 +4,15 @@ import expressHandlebars from 'express-handlebars'
 import path from 'path' //path join folders routes independently be linux or windows path
 import indexRoutes from './routes';
 import tasksRoutes from './routes/tasks'
+import jsonRoutes from './routes/json'
+import multer from 'multer';
+
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, 'public/uploads'),
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    }
+})
 
 class Application {
     app: express.Application;
@@ -14,6 +23,7 @@ class Application {
         this.settings();
         this.middlewares();
         this.routes();
+
     }
 
     settings(){
@@ -40,12 +50,16 @@ class Application {
         this.app.use(morgan('dev'));
         this.app.use(express.json()); //app understands json
         this.app.use(express.urlencoded({extended:false})) //html form data interpreter
+        this.app.use(multer({
+            storage,
+            dest: path.join(__dirname, 'public/uploads')
+        }).single('hola'));
     }
 
     routes(){
         this.app.use(indexRoutes);
         this.app.use('/tasks',tasksRoutes);
-
+        this.app.use('/json',jsonRoutes); // rutas de json
         this.app.use(express.static(path.join(__dirname, 'public'))); //server knows public folder
     }
 
