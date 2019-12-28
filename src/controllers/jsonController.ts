@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import fs from 'fs';
 
 // Models
-import json from '../models/json';
+import Json from '../models/json';
 
 class JsonController{
 
@@ -14,12 +14,12 @@ class JsonController{
         //file es el archivo que subimos desde el formulario
         try {
             const data = fs.readFileSync(req.file.path, 'utf8')
-             var ok = JSON.parse(data);
-            console.log(ok);
+            let docs = JSON.parse(data);
+            Json.insertMany(docs); //Insertamos en la base de datos
           } catch (err) {
             console.error(err)
           }
-        res.send('ok');
+          res.redirect('/');
     }
 
 }
