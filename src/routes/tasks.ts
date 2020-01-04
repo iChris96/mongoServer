@@ -26,6 +26,15 @@ router.route('/list')
             }
         );
 
+router.route('/all')
+        .get(
+            async (req: Request, res: Response) => {
+                const taskList = await Task.find();
+                console.log(taskList);
+                return res.status(200).json(taskList);
+            }
+        );
+
 
 //DELETE TASK
 router.route('/delete/:id')
