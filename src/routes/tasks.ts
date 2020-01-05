@@ -16,7 +16,7 @@ router.route('/create')
         tasksController.createTaskPost
     );
 
-//GET TASKS
+//GET TASKS AS VIEWNP
 router.route('/list')
         .get(
             async (req: Request, res: Response) => {
@@ -26,6 +26,7 @@ router.route('/list')
             }
         );
 
+//GET TASKS AS JSON
 router.route('/all')
         .get(
             async (req: Request, res: Response) => {
