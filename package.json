@@ -9,7 +9,7 @@
     "hbscopy": "ncp ./src/views/ ./dist/views/",
     "clean": "rimraf ./dist",
     "build": "npm run clean && tsc && npm run public && npm run hbscopy",
-    "start": "node dist/index.js"
+    "start": "node dist/src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +26,7 @@
     "typescript": "^3.7.3"
   },
   "dependencies": {
+    "@types/express-session": "^1.15.16",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",

@@ -1,25 +1,28 @@
 import { Router} from 'express'
 import { authController } from '../controllers/authController'
-
+import verifyToken from '../controllers/verifyToken'
 
 const router = Router();
 
-
-router.route('/signin')
-    .get(
-        authController.signin
-    );
-
+//register
 router.route('/signup')
     .get(
         authController.signup 
     );
 
-router.route('/me')
-    .get(
-        authController.me
+//login
+router.route('/signin')
+    .post(
+        authController.signin
     );
 
+//get user info by token
+router.route('/me')
+    .all(
+        verifyToken
+    ).get(
+        authController.me
+    )
 
 
 export default router;
