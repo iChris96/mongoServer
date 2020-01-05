@@ -2,10 +2,15 @@ import express from 'express'
 import morgan from 'morgan' //listening http events
 import expressHandlebars from 'express-handlebars'
 import path from 'path' //path join folders routes independently be linux or windows path
+import multer from 'multer';
+
+//ROUTES
 import indexRoutes from './routes';
 import tasksRoutes from './routes/tasks'
 import jsonRoutes from './routes/json'
-import multer from 'multer';
+import authRoutes from './routes/auth'
+
+
 
 const storage = multer.diskStorage({
     destination: path.join(__dirname, 'public/uploads'),
@@ -60,6 +65,7 @@ class Application {
         this.app.use(indexRoutes);
         this.app.use('/tasks',tasksRoutes);
         this.app.use('/json',jsonRoutes); // rutas de json
+        this.app.use('/auth',authRoutes);
         this.app.use(express.static(path.join(__dirname, 'public'))); //server knows public folder
     }
 

@@ -25,7 +25,7 @@ router.route('/list')
                 res.render('tasks/list', { taskList });
             }
         );
-
+ 
 //GET TASKS AS JSON
 router.route('/all')
         .get(

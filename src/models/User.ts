@@ -1,21 +1,26 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
+const bcrypt = require('bcryptjs')
 
-const UserSchema = new Schema({
-    userName: {
-        type: String,
-        required: true,
-        lowercase: true
-    },
-    email: {
-        type: String,
-        required: true,
-        lowercase: true
-    },
-    password: {
-        type: String,
-        required: true,
-        lowercase: true
-    }
-})
+export interface IUser extends Document {
+  email: string;
+  userName: string;
+  password: string;
+  encryptPassword(password:string): string
+}
 
-export default model('User', UserSchema);
+const UserSchema: Schema = new Schema({
+  email: { type: String, required: true, unique: true },
+  userName: { type: String, required: true },
+  password: { type: String, required: true }
+});
+
+UserSchema.methods.encryptPassword = async (password: string) => {
+    const salt = await bcrypt.genSalt(10);
+    const encripted = bcrypt.hash(password, salt);
+    console.log('encripted pass:', encripted);
+    
+    return encripted;
+};
+
+// Export the model and return your IUser interface
+export default mongoose.model<IUser>('User', UserSchema);
