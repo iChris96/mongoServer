@@ -7,7 +7,7 @@ database();
 //start server
 const app = new App(); 
 app.start();
-
+ 
 /*
 build commands
     npx tsc -> make ./dist
@@ -18,6 +18,13 @@ build commands
     npm run hbscopy -> copy views+ folder to ./dist from ./src
     npm run build -> to build .dist server
     npm start -> to run .dist server  
+    
+    //Run server for developing
+    npm run dist -> watch for changes in src -> make ./dist -> execute .dist/index.js
+
+    //Build ./dist for aws server (cleaner way) 
+    npm run build 
+
 
 
 instalation commands
