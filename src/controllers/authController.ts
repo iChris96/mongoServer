@@ -75,14 +75,15 @@ class AuthController{
 
      //Get user info by token
      public async me (req: Request, res: Response, next: NextFunction){
-        /*const user = await User.findById('token123', { password: 0 }); //get user by req.userId (witch is provide for verifyToken middleware) from db except password value
+        console.log('search for userId: ', req.userId);
+        const user = await User.findById(req.userId, { password: 0 }); //get user by req.userId (witch is provide for verifyToken middleware) from db except password value
         if(!user){
             return res.status(404).send('Not user found');
-        }*/
+        }
 
         res.json({
             message: 'user found',
-            
+            user
         })
      }
 

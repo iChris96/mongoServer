@@ -8,7 +8,6 @@ database();
 const app = new App(); 
 app.start();
 
-
 /*
 build commands
     npx tsc -> make ./dist
