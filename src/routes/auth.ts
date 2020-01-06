@@ -1,6 +1,6 @@
 import { Router} from 'express'
 import { authController } from '../controllers/authController'
-import verifyToken from '../controllers/verifyToken'
+import { verifyToken } from '../controllers/verifyToken'
 
 const router = Router();
 

@@ -16,7 +16,7 @@ class AuthController{
             email: email,
             password: password
         })
-        user.password = await user.encryptPassword(user.password) //apply encryp password to userSchema 
+        user.password = await user.encryptPassword(user.password) //apply encrypt password to userSchema 
         console.log(user)
         await user.save(); //save user to db
 
@@ -24,9 +24,9 @@ class AuthController{
         const token = jwt.sign({id: user._id}, Config.secret, {
             expiresIn: 60 * 60 * 24 //1 dia
         });
-        console.log(token);
+        console.log('Token created: ', token);
 
-        res.json(
+        res.header('auth-token',token).json(
                 {
                     message: 'User Save',
                     token: token
@@ -61,13 +61,13 @@ class AuthController{
         }
 
         //create token
-         const token = jwt.sign({id: user._id}, Config.secret, {
+         const token:string = jwt.sign({id: user._id}, Config.secret, {
             expiresIn: 60 * 60 * 24 //1 dia
         });
         console.log(token);
 
-
-        res.json({
+        //return token + response
+        res.header('auth-token',token).json({
             auth: true,
             token: token
         })
@@ -75,14 +75,14 @@ class AuthController{
 
      //Get user info by token
      public async me (req: Request, res: Response, next: NextFunction){
-        const user = await User.findById(req.userId, { password: 0 }); //get user by req.userId (witch is provide for verifyToken middleware) from db except password value
+        /*const user = await User.findById('token123', { password: 0 }); //get user by req.userId (witch is provide for verifyToken middleware) from db except password value
         if(!user){
             return res.status(404).send('Not user found');
-        }
+        }*/
 
         res.json({
             message: 'user found',
-            user
+            
         })
      }
 

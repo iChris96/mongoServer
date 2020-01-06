@@ -1,14 +1,15 @@
-import App from './app';
-import database from "./database";
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const app_1 = __importDefault(require("./app"));
+const database_1 = __importDefault(require("./database"));
 //start db
-database();
-
+database_1.default();
 //start server
-const app = new App(); 
+const app = new app_1.default();
 app.start();
-
-
 /*
 build commands
     npx tsc -> make ./dist
@@ -18,7 +19,7 @@ build commands
     npm run public -> copy public folder to ./dist from ./src
     npm run hbscopy -> copy views+ folder to ./dist from ./src
     npm run build -> to build .dist server
-    npm start -> to run .dist server  
+    npm start -> to run .dist server
 
 
 instalation commands
@@ -28,9 +29,8 @@ instalation commands
     npm i @types/express -D -> IDE autocompletation of express module
     npm i nodemon -D -> watcher files module (nodemon.json)
     npm i @types/mongoose -D
-    npm i @types/bcryptjs -D 
+    npm i @types/bcryptjs -D
     npm i @types/jsonwebtoken -D
-    npm i @types/express-serve-static-core -D -> instead of @types/express
 
 uninstall packages
     npm uninstall <name> removes the module from node_modules, but not package.json
@@ -38,4 +38,5 @@ uninstall packages
     npm uninstall <name> --save-dev also removes it from devDependencies in package.json
     npm -g uninstall <name> --save also removes it globally
 
-*/
+*/ 
+//# sourceMappingURL=index.js.map
