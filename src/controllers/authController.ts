@@ -10,14 +10,13 @@ class AuthController{
 
     //Register
     public async signup (req: Request, res: Response, next: NextFunction) {
-        const { userName, email, password } = req.body; //get data from body
+        const { email, password } = req.body; //get data from body
         const user: IUser = new User ({
-            userName: userName,
             email: email,
             password: password
         })
         user.password = await user.encryptPassword(user.password) //apply encrypt password to userSchema 
-        console.log(user)
+        console.log('Saving user to DB: ', user);
         await user.save(); //save user to db
 
         //create token

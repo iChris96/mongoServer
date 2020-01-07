@@ -4,7 +4,6 @@ import bcrypt from 'bcryptjs';
 
 export interface IUser extends Document {
   email: string;
-  userName: string;
   password: string;
   encryptPassword(password:string): Promise<string>;
   validatePassword(password:string): Promise<boolean>;
@@ -12,7 +11,6 @@ export interface IUser extends Document {
 
 const UserSchema: Schema = new Schema({
   email: { type: String, required: true, unique: true },
-  userName: { type: String, required: true },
   password: { type: String, required: true }
 });
 

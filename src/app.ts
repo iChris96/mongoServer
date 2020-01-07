@@ -3,6 +3,7 @@ import morgan from 'morgan' //listening http events
 import expressHandlebars from 'express-handlebars'
 import path from 'path' //path join folders routes independently be linux or windows path
 import multer from 'multer';
+import Config from './config';
 
 //ROUTES
 import indexRoutes from './routes';
@@ -33,7 +34,7 @@ class Application {
 
     settings(){
         //variables
-        this.app.set('port', 3000); //its like a variable into app object
+        this.app.set('port', Config.port); //its like a variable into app object
         this.app.set('views', path.join(__dirname, 'views')); //__dirname -> actual directory //now node knows where /views directory is localized
 
         //handlebars
