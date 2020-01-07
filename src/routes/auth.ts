@@ -6,7 +6,7 @@ const router = Router();
 
 //register
 router.route('/signup')
-    .get(
+    .post(
         authController.signup 
     );
 
