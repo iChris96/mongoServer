@@ -5,32 +5,60 @@ const jwt = require('jsonwebtoken');
 // Models
 import User, {IUser} from '../models/User';
 
+/*
+return res.status(404).json({
+    message: 'user not found'
+})
+return res.status(500).json('Internal Sever Error');
+*/
 
 class AuthController{
 
     //Register
     public async signup (req: Request, res: Response, next: NextFunction) {
-        const { email, password } = req.body; //get data from body
-        const user: IUser = new User ({
-            email: email,
-            password: password
-        })
-        user.password = await user.encryptPassword(user.password) //apply encrypt password to userSchema 
-        console.log('Saving user to DB: ', user);
-        await user.save(); //save user to db
+        try {
+            const { email, password } = req.body; //get data from body
+            
+            //Check if user exist
+            const existUser = await User.findOne({email: email}) //find user by email
 
-        //create token
-        const token = jwt.sign({id: user._id}, Config.secret, {
-            expiresIn: 60 * 60 * 24 //1 dia
-        });
-        console.log('Token created: ', token);
+            if(existUser) {
+                console.log('existUser: ', existUser)
+                return res.status(400).json(
+                    {
+                        //auth:false,
+                        code:125,
+                        error: "This email is already used"
+                    }
+                )
+            }
+            
 
-        res.header('auth-token',token).json(
-                {
-                    message: 'User Save',
-                    token: token
-                }
-            )
+            const user: IUser = new User ({
+                email: email,
+                password: password
+            })
+            user.password = await user.encryptPassword(user.password) //apply encrypt password to userSchema 
+            console.log('Saving user to DB: ', user);
+            await user.save(); //save user to db
+    
+            //create token
+            const token = jwt.sign({id: user._id}, Config.secret, {
+                expiresIn: 60 * 60 * 24 //1 dia
+            });
+            console.log('Token created: ', token);
+    
+            res.header('auth-token',token).json(
+                    {
+                        message: 'User Save',
+                        token: token
+                    }
+                )
+        } catch (error) {
+            console.log('-----Something was wrong------ \n', error)
+            //next(error)
+            res.status(500).send({message: error.message});
+        }
     }
 
     //Start Session
