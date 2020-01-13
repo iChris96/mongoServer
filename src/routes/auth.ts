@@ -16,6 +16,12 @@ router.route('/signin')
         authController.signin
     );
 
+//refreshToken
+router.route('/refreshToken')
+    .post(
+        authController.refreshToken
+    );
+
 //get user info by token
 router.route('/me')
     .all(
