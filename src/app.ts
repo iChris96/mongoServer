@@ -10,6 +10,7 @@ import indexRoutes from './routes';
 import tasksRoutes from './routes/tasks'
 import jsonRoutes from './routes/json'
 import authRoutes from './routes/auth'
+import csvRoutes from './routes/csv';
 
 
 
@@ -68,6 +69,7 @@ class Application {
         this.app.use('/json',jsonRoutes); // rutas de json
         this.app.use('/auth',authRoutes);
         this.app.use(express.static(path.join(__dirname, 'public'))); //server knows public folder
+        this.app.use('/csv', csvRoutes);
     }
 
     start(){ 
