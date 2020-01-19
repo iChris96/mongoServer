@@ -7,7 +7,7 @@ database();
 //start server
 const app = new App(); 
 app.start();
- 
+  
 /*
 build commands
     npx tsc -> make ./dist
@@ -20,7 +20,9 @@ build commands
     npm start -> to run .dist server  
     
     //Run server for developing
-    npm run dist -> watch for changes in src -> make ./dist -> execute .dist/index.js
+    npm run clean
+    npm run build
+    npm run dist -> watch for changes in src then make ./dist then execute .dist/index.js
 
     //Build ./dist for aws server (cleaner way) 
     npm run build 

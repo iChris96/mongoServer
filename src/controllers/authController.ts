@@ -65,12 +65,14 @@ class AuthController{
     public async signin (req: Request, res: Response, next: NextFunction) {
         //get user data from db
         const { email, password } = req.body
+        console.log('Post signin ->', req.body)
         const user = await User.findOne({email: email}) //find user by email
         if(!user) {
-            return res.status(404).send(
+            return res.status(400).send(
                 {
-                    auth:false,
-                    message: "Email doesn't exists"
+                    //auth:false,
+                    code:103,
+                    error: "Email or password wrong"
                 }
             )
         }
@@ -79,29 +81,72 @@ class AuthController{
         const validPassword = await user.validatePassword(password); //true if password is valid
         console.log(validPassword);
         if(!validPassword){
-            return res.status(401).send(
+            return res.status(400).send(
                 {
-                    auth:false,
-                    message: "incorrect data"
+                    code:103,
+                    error: "Email or password wrong"
                 }
             )
         }
 
         //create token
          const token:string = jwt.sign({id: user._id}, Config.secret, {
-            expiresIn: 60 * 60 * 24 //1 dia
+            expiresIn: 30 //* 60 * 24 //1 dia
         });
         console.log(token);
 
         //return token + response
         res.header('auth-token',token).json({
-            auth: true,
-            token: token
+            //auth: true,
+            token: token,
+            user: user
         })
+     }
+
+     public async refreshToken (req: Request, res: Response, next: NextFunction) {
+        //App will send token by headers but cannot be saved into it so its saved in sharedPreferences
+        //If refreshToken returns 200 all is OK otherwise app will be sent to register/login view
+        console.log('-----refreshToken-------');
+        const userToken = req.header('auth-token'); //pass token as x-access-token header value
+        console.log('oldToken: ', userToken);
+        
+        //get user data from db
+        const { email, password } = req.body
+        console.log('body ->', req.body)
+        const user = await User.findOne({email: email}) //find user by email
+        if(!user) {
+            return res.status(400).json({
+                auth: false,
+                message: 'Invalid email or password'
+            })
+        }
+
+        //validate provided password
+        const validPassword = await user.validateEncriptedsPassword(password); //true if password is valid
+        console.log(validPassword);
+        if(!validPassword){
+            return res.status(400).json({
+                auth: false,
+                message: 'Invalid email or password'
+            })
+        } 
+
+        //create token
+         const token:string = jwt.sign({id: user._id}, Config.secret, {
+            expiresIn: 60 //* 60 * 24 //1 dia
+        });
+        console.log('New token: ', token);
+
+        //return token + response
+        res.status(200).header('auth-token',token).send({token: token}) 
      }
 
      //Get user info by token
      public async me (req: Request, res: Response, next: NextFunction){
+        console.log('-----Me-------');
+        const userToken = req.header('auth-token'); //pass token as x-access-token header value
+        console.log('userToken: ', userToken);
+
         console.log('search for userId: ', req.userId);
         const user = await User.findById(req.userId, { password: 0 }); //get user by req.userId (witch is provide for verifyToken middleware) from db except password value
         if(!user){

@@ -7,6 +7,7 @@ export interface IUser extends Document {
   password: string;
   encryptPassword(password:string): Promise<string>;
   validatePassword(password:string): Promise<boolean>;
+  validateEncriptedsPassword(password:string): boolean;
 }
 
 const UserSchema: Schema = new Schema({
@@ -24,8 +25,13 @@ UserSchema.methods.encryptPassword = async (password: string): Promise<string> =
 
 
 UserSchema.methods.validatePassword = async function (password: string): Promise<boolean> {
-    return await bcrypt.compare(password, this.password); //compare pass from req.body with encrypted user.password from db
+    return await bcrypt.compare(password, this.password); //compare no encripted pass from req.body with encrypted user.password from db
 };
+
+UserSchema.methods.validateEncriptedsPassword = function (password: string): Boolean {
+  return (password === this.password) //compare encripted pass from req.body with encrypted user.password from db
+};
+
 
 // Export the model and return your IUser interface
 export default mongoose.model<IUser>('User', UserSchema);
