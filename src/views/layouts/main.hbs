@@ -6,17 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tutorial C R U D</title>
     <!-- Boostrap 4 -->
-    <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-yrfSO0DBjS56u5M+SjWTyAHujrkiYVtRYh2dtB3yLQtUz3bodOeialO59u5lUCFF" crossorigin="anonymous">
     <!-- Css -->
     <link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
-    
-    {{> navigation}}
 
-    <div class="p-12">
+<body>
+<main class="main">
+  {{> sidebar}}
+  <section class="twitter">
+    <div class="container">
         {{{body}}}
     </div>
-    
+  </section>
+</main>
+      
 </body>
 </html>

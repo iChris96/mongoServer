@@ -15,7 +15,6 @@ router.route('/signin')
     .post(
         authController.signin
     );
-
 //get user info by token
 router.route('/me')
     .all(
@@ -23,6 +22,4 @@ router.route('/me')
     ).get(
         authController.me
     )
-
-
 export default router;
