@@ -5,7 +5,7 @@ export default async function connect() {
     try {
         await mongoose.connect(
             'mongodb://localhost/tutorialDB',
-            { useNewUrlParser: true, useUnifiedTopology: true }
+            { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
         );
         console.log('Db Connected');
     } catch (error) {

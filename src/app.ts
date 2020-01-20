@@ -7,9 +7,10 @@ import Config from './config';
 
 //ROUTES
 import indexRoutes from './routes';
-import tasksRoutes from './routes/tasks'
-import jsonRoutes from './routes/json'
-import authRoutes from './routes/auth'
+import tasksRoutes from './routes/tasks';
+import jsonRoutes from './routes/json';
+import authRoutes from './routes/auth';
+import stopsRoutes from './routes/stops';
 
 
 
@@ -67,6 +68,7 @@ class Application {
         this.app.use('/tasks',tasksRoutes);
         this.app.use('/json',jsonRoutes); // rutas de json
         this.app.use('/auth',authRoutes);
+        this.app.use('/stops',stopsRoutes);
         this.app.use(express.static(path.join(__dirname, 'public'))); //server knows public folder
     }
 

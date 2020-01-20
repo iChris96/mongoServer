@@ -4,7 +4,7 @@ import database from "./database";
 //start db
 database();
 
-//start server
+//start server 
 const app = new App(); 
 app.start();
   
