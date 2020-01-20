@@ -29,6 +29,4 @@ router.route('/me')
     ).get(
         authController.me
     )
-
-
 export default router;

@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-7">
+        <img style="width: 100%; max-height: 80vh;" src="/images/background.jpg" alt="" srcset="">
+    </div>
+    <div class="col-md-5">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+            <div class="card-body">
+                <!-- Form -->
+                <h1>Upload Csv</h1>
+                <form action="/csv/create" method="POST" enctype="multipart/form-data">
+                    <!-- Inputs -->
+                    <div class="form-group">
+                        <input type="file" name="hola">
+                    </div>
+                    <!-- Buttom -->
+                    <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
