@@ -1,10 +1,7 @@
-import { Router, Request, Response } from 'express'
+import { Router} from 'express'
 import { stopsController } from '../controllers/stopsController'
 
 const router = Router();
-
-// Models
-import Stops from "../models/Stops";
 
 //GET TASKS AS JSON
 router.route('/blue')
@@ -21,5 +18,10 @@ router.route('/orange')
     .get(
         stopsController.getOrangeStops
     );
+
+router.route('/all')
+.get(
+    stopsController.getAllStops
+);
 
 export default router;
