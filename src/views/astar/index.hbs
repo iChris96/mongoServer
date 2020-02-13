@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="card shadow p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+            <!-- Form -->
+            <h1>Generate Trip</h1>
+            <form action="/astar" method="POST">
+                <!-- Inputs -->
+                <div class="form-group">
+                    <label for="initial_station">Estacion Inicial</label>
+                    <select class="form-control" name="initial_station" id="initial_station">
+                        <optgroup label="___Azul___">
+                            {{#each stopsListBlue}}
+                            <option value="{{_id}}">{{properties.name}}</option>
+                            {{/each}}
+                        </optgroup>
+                        <optgroup label="___Roja____">
+                            {{#each stopsListRed}}
+                            <option value="{{_id}}">{{properties.name}}</option>
+                            {{/each}}
+                        </optgroup>
+                        <optgroup label="___Naranja___">
+                            {{#each stopsListOrange}}
+                            <option value="{{_id}}">{{properties.name}}</option>
+                            {{/each}}
+                        </optgroup>
+                    </select>
+                    <label for="final_station">Estacion Inicial</label>
+                    <select class="form-control" name="final_station" id="final_station">
+                        <optgroup label="___Azul___">
+                            {{#each stopsListBlue}}
+                            <option value="{{_id}}">{{properties.name}}</option>
+                            {{/each}}
+                        </optgroup>
+                        <optgroup label="___Roja____">
+                            {{#each stopsListRed}}
+                            <option value="{{_id}}">{{properties.name}}</option>
+                            {{/each}}
+                        </optgroup>
+                        <optgroup label="___Naranja___">
+                            {{#each stopsListOrange}}
+                            <option value="{{_id}}">{{properties.name}}</option>
+                            {{/each}}
+                        </optgroup>
+                    </select>
+                </div>
+                <!-- Buttom -->
+                <button type="submit" class="btn btn-success btn-block">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>

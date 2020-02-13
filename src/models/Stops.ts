@@ -1,4 +1,5 @@
 import mongoose,{ Schema, model, Document} from 'mongoose';
+import { type } from 'os';
 
 
 export interface IStop extends Document {
@@ -10,7 +11,8 @@ export interface IStop extends Document {
     area: String ,
     lines: [ String ],
     id: String,
-    name: String
+    name: String,
+    childrens: [String]
   },
   type: String
 }
@@ -25,6 +27,7 @@ const StopsSchema = new Schema({
       lines: [ { type: String, required: true, unique: true }, ],
       id: { type: String, required: true, unique: true },
       name: { type: String, required: true, unique: true },
+      childrens: [{type: String, required: true}]
     },
     type: { type: String, required: true, unique: true }
   })
