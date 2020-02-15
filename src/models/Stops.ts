@@ -12,7 +12,8 @@ export interface IStop extends Document {
     lines: [ String ],
     id: String,
     name: String,
-    childrens: [String]
+    childrens: [String],
+    father: String
   },
   type: String
 }
@@ -27,7 +28,8 @@ const StopsSchema = new Schema({
       lines: [ { type: String, required: true, unique: true }, ],
       id: { type: String, required: true, unique: true },
       name: { type: String, required: true, unique: true },
-      childrens: [{type: String, required: true}]
+      childrens: [{type: String, required: true}],
+      father: {type: String}
     },
     type: { type: String, required: true, unique: true }
   })

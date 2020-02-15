@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import fs from 'fs';
 import Stops from '../models/Stops';
+import { ok } from 'assert';
 
 
 class astarController {
@@ -9,57 +10,102 @@ class astarController {
         const stopsListBlue = await Stops.find({ 'properties.lines': "blue" });
         const stopsListRed = await Stops.find({ $and: [{ 'properties.lines': { $ne: "mattapan" } }, { 'properties.lines': "red" }] }); //get red stops except mattapan lines
         const stopsListOrange = await Stops.find({ 'properties.lines': "orange" });
-
-        res.render('astar/index', { stopsListBlue, stopsListRed, stopsListOrange });
+        const stopsListGreen = await Stops.find({ 'properties.lines': "green" });
+        res.render('astar/index', { stopsListBlue, stopsListRed, stopsListOrange, stopsListGreen });
     }
     public async algorithm(req: Request, res: Response) {
         let h = 0;
         let g = 0;
+        let band = false;
         try {
             let initial = await Stops.findById({ _id: req.body.initial_station });
             let final = await Stops.findById({ _id: req.body.final_station });
             if (initial != null && final != null) {
                 let actual = initial;
-                let visited = [initial];
-                while( final.properties.name != actual.properties.name){
-                    let distance = [];
+                let opened = [{ "station": actual.properties.name, "f": 0, "father": actual.properties.name }];
+                let closed = [];
+                while (opened.length > 0) {
+
                     for (const iterator of actual.properties.childrens) {
-                      let child = await Stops.findOne({"properties.name": iterator});
-                      
-                        if(child != null)
-                        {
+                        let child = await Stops.findOne({ "properties.name": iterator });
+                        if (child != null) {
                             let h = this.calc_distance(child.geometry.coordinates, final.geometry.coordinates);
-                            distance.push({station: iterator, f: h+g});
-                        } 
-                    } 
-                    let mejor = await Stops.findOne({"properties.name": this.calc_min(distance).station});
-                    if(mejor != null){
-                        g = this.calc_distance(actual.geometry.coordinates, mejor.geometry.coordinates);
-                        actual = mejor;
-                        visited.push(actual);
+                            if (closed.filter(close => close.properties.name == child?.properties.name).length == 0) {
+                                // if (child.properties.name == "State") {
+                                    // console.log("si");
+
+                                    // opened.push({ station: iterator, f: h + g + 1000123123123, father: actual.properties.name });
+                                // }
+                                // else {
+                                    opened.push({ station: iterator, f: h + g, father: actual.properties.name });
+                                // }
+
+                            }
+
+                        }
+                    }
+                    opened.sort(function (a, b) {
+                        if (a.f < b.f) {
+                            return -1;
+                        }
+                        if (a.f > b.f) {
+                            return 1;
+                        }
+                        return 0;
+                    })
+                    // console.log(opened);
+                    let aux_mejor = opened.shift();
+                    if (aux_mejor != undefined) {
+                        let mejor = await Stops.findOne({ "properties.name": aux_mejor.station });
+
+                        if (mejor != null) {
+                            mejor.properties.father = aux_mejor.father;
+                            g += this.calc_distance(actual.geometry.coordinates, mejor.geometry.coordinates);
+                            closed.push(actual);
+                            actual = mejor;
+                        }
+                    }
+                    if (actual.properties.name == final.properties.name) {
+                        band = true;
+                        break;
                     }
                 }
-                for (const iterator of visited) {
-                    console.log({"recorrido":iterator.properties.name});
+                if (band) {
+                    let father = actual;
+                    let recorrido = [father]
+                    while (father.properties.name != initial.properties.name) {
+
+                        let aux = closed.filter(close => close.properties.name == father.properties.father);
+
+                        if (aux[0] != undefined) {
+                            father = aux[0];
+                            recorrido.push(father);
+                        }
+                    }
+                    for (const iterator of recorrido) {
+                        console.log("estacion:", [iterator.properties.name]);
+                    }
+                    res.send("exito");
                 }
-                res.send("ok")
+                else {
+                    res.send("pelas");
+                }
             }
         } catch (error) {
             console.log(error);
-            
+
         }
 
     }
 
-    public calc_min(stations: Array<any>){
+    public calc_min(stations: Array<any>) {
         let to_return = {
             station: "", f: 0
         }
         to_return = stations[0];
         for (const iterator of stations) {
-            if(iterator.f < to_return.f)
-            {
-                 to_return = iterator
+            if (iterator.f < to_return.f) {
+                to_return = iterator
             }
         }
         return to_return;
@@ -70,16 +116,16 @@ class astarController {
         let final_lat = final[1];
         let final_long = final[0];
         let earth_radius = 6371000;
-        initial_lat = initial_lat * (Math.PI/180);
-        initial_long = initial_long * (Math.PI/180);
-        final_lat = final_lat * (Math.PI/180);
-        final_long = final_long * (Math.PI/180);
+        initial_lat = initial_lat * (Math.PI / 180);
+        initial_long = initial_long * (Math.PI / 180);
+        final_lat = final_lat * (Math.PI / 180);
+        final_long = final_long * (Math.PI / 180);
 
         let latitude_delta = initial_lat - final_lat;
         let longitude_delta = initial_long - final_long;
 
-        let angulo = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(latitude_delta / 2), 2) + 
-        Math.cos (initial_lat) * Math.cos(final_lat) * Math.pow(Math.sin(longitude_delta /2), 2)));
+        let angulo = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(latitude_delta / 2), 2) +
+            Math.cos(initial_lat) * Math.cos(final_lat) * Math.pow(Math.sin(longitude_delta / 2), 2)));
 
         const total = angulo * earth_radius;
 

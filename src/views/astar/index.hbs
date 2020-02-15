@@ -23,8 +23,13 @@
                             <option value="{{_id}}">{{properties.name}}</option>
                             {{/each}}
                         </optgroup>
+                        <optgroup label="___Verde___">
+                            {{#each stopsListGreen}}
+                            <option value="{{_id}}">{{properties.name}}</option>
+                            {{/each}}
+                        </optgroup>
                     </select>
-                    <label for="final_station">Estacion Inicial</label>
+                    <label for="final_station">Estacion Final</label>
                     <select class="form-control" name="final_station" id="final_station">
                         <optgroup label="___Azul___">
                             {{#each stopsListBlue}}
@@ -38,6 +43,11 @@
                         </optgroup>
                         <optgroup label="___Naranja___">
                             {{#each stopsListOrange}}
+                            <option value="{{_id}}">{{properties.name}}</option>
+                            {{/each}}
+                        </optgroup>
+                        <optgroup label="___Verde___">
+                            {{#each stopsListGreen}}
                             <option value="{{_id}}">{{properties.name}}</option>
                             {{/each}}
                         </optgroup>

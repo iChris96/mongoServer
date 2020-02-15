@@ -3,44 +3,6 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            -71.105682,
-            42.333722
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-e",
-            "green"
-          ],
-          "id": "fenwood-rd",
-          "name": "Fenwood Rd"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.149072,
-            42.334912
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "brookline",
-          "lines": [
-            "green-d",
-            "green"
-          ],
-          "id": "reservoir",
-          "name": "Reservoir"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
             -71.032,
             42.345182
           ]
@@ -60,25 +22,6 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            -71.060327,
-            42.279712
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "mattapan",
-            "red"
-          ],
-          "id": "cedar-grove",
-          "name": "Cedar Grove"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
             -71.022476,
             42.379759
           ]
@@ -90,7 +33,8 @@
             "blue"
           ],
           "id": "wood-island",
-          "name": "Wood Island"
+          "name": "Wood Island",
+          "childrens":["Orient Heights", "Airport"]
         }
       },
       {
@@ -128,7 +72,8 @@
             "orange"
           ],
           "id": "back-bay",
-          "name": "Back Bay"
+          "name": "Back Bay",
+          "childrens": ["Ruggles", "Tufts Medical Center"]
         }
       },
       {
@@ -146,7 +91,8 @@
             "red"
           ],
           "id": "charlesmgh",
-          "name": "Charles/MGH"
+          "name": "Charles/MGH",
+          "childrens": ["Kendall/MIT", "Park St"]
         }
       },
       {
@@ -183,7 +129,8 @@
             "red"
           ],
           "id": "broadway",
-          "name": "Broadway"
+          "name": "Broadway",
+          "childrens": ["South Station", "Andrew"]
         }
       },
       {
@@ -201,7 +148,8 @@
             "red"
           ],
           "id": "quincy-adams",
-          "name": "Quincy Adams"
+          "name": "Quincy Adams",
+          "childrens": ["Quincy Center", "Braintree"]
         }
       },
       {
@@ -239,7 +187,8 @@
             "orange"
           ],
           "id": "jackson-square",
-          "name": "Jackson Square"
+          "name": "Jackson Square",
+          "childrens": ["Stony Brook", "Roxbury Crossing"]
         }
       },
       {
@@ -259,24 +208,6 @@
           ],
           "id": "packards-corner",
           "name": "Packards Corner"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.057421,
-            42.359065
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "orange"
-          ],
-          "id": "state-street",
-          "name": "State Street"
         }
       },
       {
@@ -310,49 +241,11 @@
         "properties": {
           "area": "boston",
           "lines": [
-            "mattapan",
             "red"
           ],
           "id": "ashmont",
-          "name": "Ashmont"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.252327,
-            42.337394
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "newton",
-          "lines": [
-            "green-d",
-            "green"
-          ],
-          "id": "riverside",
-          "name": "Riverside"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.067612,
-            42.270093
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "milton",
-          "lines": [
-            "mattapan",
-            "red"
-          ],
-          "id": "milton",
-          "name": "Milton"
+          "name": "Ashmont",
+          "childrens": ["Shawmut"]
         }
       },
       {
@@ -370,7 +263,8 @@
             "red"
           ],
           "id": "alewife",
-          "name": "Alewife"
+          "name": "Alewife",
+          "childrens": ["Davis"]
         }
       },
       {
@@ -408,26 +302,8 @@
             "orange"
           ],
           "id": "forest-hills",
-          "name": "Forest Hills"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.111406,
-            42.32996
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-e",
-            "green"
-          ],
-          "id": "back-of-the-hill",
-          "name": "Back of the Hill"
+          "name": "Forest Hills",
+          "childrens": ["Green Street"]
         }
       },
       {
@@ -472,25 +348,6 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            -71.142593,
-            42.343886
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green",
-            "green-b"
-          ],
-          "id": "washington-st",
-          "name": "Washington St"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
             -71.029307,
             42.274957
           ]
@@ -502,7 +359,8 @@
             "red"
           ],
           "id": "north-quincy",
-          "name": "North Quincy"
+          "name": "North Quincy",
+          "childrens": ["JFK/UMass", "Wollaston"]
         }
       },
       {
@@ -541,7 +399,8 @@
             "green"
           ],
           "id": "lechmere",
-          "name": "Lechmere"
+          "name": "Lechmere",
+          "childrens": ["Science Park"]
         }
       },
       {
@@ -559,7 +418,8 @@
             "orange"
           ],
           "id": "community-college",
-          "name": "Community College"
+          "name": "Community College",
+          "childrens": ["North Station", "Sullivan Square"]
         }
       },
       {
@@ -581,26 +441,8 @@
             "orange"
           ],
           "id": "haymarket",
-          "name": "Haymarket"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.166124,
-            42.339902
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "brighton",
-          "lines": [
-            "green",
-            "green-b"
-          ],
-          "id": "boston-college",
-          "name": "Boston College"
+          "name": "Haymarket",
+          "childrens": ["State", "North Station", "Government Center"]
         }
       },
       {
@@ -646,25 +488,6 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            -71.11068,
-            42.32868
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-e",
-            "green"
-          ],
-          "id": "heath-st",
-          "name": "Heath St"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
             -71.062129,
             42.361457
           ]
@@ -676,7 +499,8 @@
             "blue"
           ],
           "id": "bowdoin",
-          "name": "Bowdoin"
+          "name": "Bowdoin",
+          "childrens": ["Government Center"]
         }
       },
       {
@@ -733,7 +557,8 @@
             "orange"
           ],
           "id": "sullivan-square",
-          "name": "Sullivan Square"
+          "name": "Sullivan Square",
+          "childrens": ["Wellington", "Community College"]
         }
       },
       {
@@ -751,45 +576,8 @@
             "red"
           ],
           "id": "savin-hill",
-          "name": "Savin Hill"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.018148,
-            42.367461
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "silver",
-            "sl1"
-          ],
-          "id": "terminals-c-amp-d",
-          "name": "Terminals C &amp; D"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.113885,
-            42.344125
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "brookline",
-          "lines": [
-            "green",
-            "green-c"
-          ],
-          "id": "kent-st",
-          "name": "Kent St"
+          "name": "Savin Hill",
+          "childrens": ["Fields Corner", "JFK/UMass"]
         }
       },
       {
@@ -807,26 +595,8 @@
             "orange"
           ],
           "id": "ruggles",
-          "name": "Ruggles"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.118129,
-            42.332002
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "brookline",
-          "lines": [
-            "green-d",
-            "green"
-          ],
-          "id": "brookline-village",
-          "name": "Brookline Village"
+          "name": "Ruggles",
+          "childrens": ["Back Bay", "Roxbury Crossing"]
         }
       },
       {
@@ -864,7 +634,8 @@
             "red"
           ],
           "id": "braintree",
-          "name": "Braintree"
+          "name": "Braintree",
+          "childrens": ["Quincy Adams"]
         }
       },
       {
@@ -884,44 +655,6 @@
           ],
           "id": "tappan-st",
           "name": "Tappan St"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.109678,
-            42.333106
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-e",
-            "green"
-          ],
-          "id": "mission-park",
-          "name": "Mission Park"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.152961,
-            42.338145
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green",
-            "green-b"
-          ],
-          "id": "chestnut-hill-ave",
-          "name": "Chestnut Hill Ave"
         }
       },
       {
@@ -958,7 +691,8 @@
             "blue"
           ],
           "id": "wonderland",
-          "name": "Wonderland"
+          "name": "Wonderland",
+          "childrens" : ["Revere Beach"] 
         }
       },
       {
@@ -982,7 +716,8 @@
             "green-b"
           ],
           "id": "boylston",
-          "name": "Boylston"
+          "name": "Boylston",
+          "childrens": ["Arlington", "Park St"]
         }
       },
       {
@@ -1039,7 +774,8 @@
             "red"
           ],
           "id": "downtown-crossing",
-          "name": "Downtown Crossing"
+          "name": "Downtown Crossing",
+          "childrens": ["State", "Chinatown", "South Station", "Park St"]
         }
       },
       {
@@ -1074,10 +810,12 @@
         "properties": {
           "area": "boston",
           "lines": [
-            "blue"
+            "blue",
+            "orange"
           ],
           "id": "state",
-          "name": "State"
+          "name": "State",
+          "childrens": ["Aquarium", "Government Center", "Haymarket", "Downtown Crossing"]
         }
       },
       {
@@ -1095,7 +833,8 @@
             "red"
           ],
           "id": "shawmut",
-          "name": "Shawmut"
+          "name": "Shawmut",
+          "childrens": ["Fields Corner", "Ashmont"]
         }
       },
       {
@@ -1113,7 +852,8 @@
             "blue"
           ],
           "id": "maverick",
-          "name": "Maverick"
+          "name": "Maverick",
+          "childrens": ["Airport", "Aquarium"]
         }
       },
       {
@@ -1131,7 +871,8 @@
             "orange"
           ],
           "id": "oak-grove",
-          "name": "Oak Grove"
+          "name": "Oak Grove",
+          "childrens": ["Malden"]
         }
       },
       {
@@ -1157,25 +898,6 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            -71.092021,
-            42.267586
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "mattapan",
-            "red"
-          ],
-          "id": "mattapan",
-          "name": "Mattapan"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
             -71.157622,
             42.339455
           ]
@@ -1189,25 +911,6 @@
           ],
           "id": "south-st",
           "name": "South St"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.127031,
-            42.331133
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "brookline",
-          "lines": [
-            "green-d",
-            "green"
-          ],
-          "id": "brookline-hills",
-          "name": "Brookline Hills"
         }
       },
       {
@@ -1230,7 +933,8 @@
             "green-b"
           ],
           "id": "government-center",
-          "name": "Government Center"
+          "name": "Government Center",
+          "childrens": ["Bowdoin", "Haymarket", "Park St", "State"]
         }
       },
       {
@@ -1248,7 +952,8 @@
             "red"
           ],
           "id": "harvard",
-          "name": "Harvard"
+          "name": "Harvard",
+          "childrens": ["Porter Square", "Central Square"]
         }
       },
       {
@@ -1285,7 +990,8 @@
             "blue"
           ],
           "id": "aquarium",
-          "name": "Aquarium"
+          "name": "Aquarium",
+          "childrens": ["Maverick", "State"]
         }
       },
       {
@@ -1331,25 +1037,6 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            -71.100052,
-            42.335898
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-e",
-            "green"
-          ],
-          "id": "longwood-medical-area",
-          "name": "Longwood Medical Area"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
             -71.121547,
             42.35169
           ]
@@ -1382,25 +1069,6 @@
           ],
           "id": "fairbanks-st",
           "name": "Fairbanks St"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.081401,
-            42.345503
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-e",
-            "green"
-          ],
-          "id": "prudential",
-          "name": "Prudential"
         }
       },
       {
@@ -1457,7 +1125,8 @@
             "blue"
           ],
           "id": "airport",
-          "name": "Airport"
+          "name": "Airport",
+          "childrens": ["Wood Island", "Maverick"]
         }
       },
       {
@@ -1475,7 +1144,8 @@
             "orange"
           ],
           "id": "malden",
-          "name": "Malden"
+          "name": "Malden",
+          "childrens": ["Oak Grove", "Wellington"]
         }
       },
       {
@@ -1493,7 +1163,8 @@
             "red"
           ],
           "id": "davis",
-          "name": "Davis"
+          "name": "Davis",
+          "childrens": ["Alewife", "Porter Square"]
         }
       },
       {
@@ -1511,7 +1182,8 @@
             "red"
           ],
           "id": "jfkumass",
-          "name": "JFK/UMass"
+          "name": "JFK/UMass",
+          "childrens": ["Andrew", "North Quincy", "Savin Hill"]
         }
       },
       {
@@ -1529,7 +1201,9 @@
             "orange"
           ],
           "id": "green-street",
-          "name": "Green Street"
+          "name": "Green Street",
+          "childrens": ["Stony Brook", "Forest Hills"]
+          
         }
       },
       {
@@ -1547,26 +1221,8 @@
             "red"
           ],
           "id": "wollaston",
-          "name": "Wollaston"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.088717,
-            42.340307
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-e",
-            "green"
-          ],
-          "id": "northeastern",
-          "name": "Northeastern"
+          "name": "Wollaston",
+          "childrens": ["North Quincy", "Quincy Center"]
         }
       },
       {
@@ -1608,7 +1264,8 @@
             "green"
           ],
           "id": "science-park",
-          "name": "Science Park"
+          "name": "Science Park",
+          "childrens": ["Lechmere", "North Station"]
         }
       },
       {
@@ -1653,25 +1310,6 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            -71.083025,
-            42.267772
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "milton",
-          "lines": [
-            "mattapan",
-            "red"
-          ],
-          "id": "valley-rd",
-          "name": "Valley Rd"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
             -71.04206,
             42.349098
           ]
@@ -1707,7 +1345,8 @@
             "orange"
           ],
           "id": "north-station",
-          "name": "North Station"
+          "name": "North Station",
+          "childrens": ["Science Park", "Community College", "Haymarket"]
         }
       },
       {
@@ -1767,7 +1406,8 @@
             "green-b"
           ],
           "id": "arlington",
-          "name": "Arlington"
+          "name": "Arlington",
+          "childrens": ["Copley", "Boylston"]
         }
       },
       {
@@ -1785,7 +1425,8 @@
             "red"
           ],
           "id": "quincy-center",
-          "name": "Quincy Center"
+          "name": "Quincy Center",
+          "childrens":["Wollaston", "Quincy Adams"]
         }
       },
       {
@@ -1811,25 +1452,6 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            -71.084529,
-            42.342919
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-e",
-            "green"
-          ],
-          "id": "symphony",
-          "name": "Symphony"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
             -70.992363,
             42.39745
           ]
@@ -1841,7 +1463,8 @@
             "blue"
           ],
           "id": "beachmont",
-          "name": "Beachmont"
+          "name": "Beachmont",
+          "childrens": ["Suffolk Downs", "Revere Beach"]
         }
       },
       {
@@ -1864,45 +1487,8 @@
             "green-b"
           ],
           "id": "park-st",
-          "name": "Park St"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.062453,
-            42.272253
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "mattapan",
-            "red"
-          ],
-          "id": "butler",
-          "name": "Butler"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.140849,
-            42.335805
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "brookline",
-          "lines": [
-            "green-d",
-            "green"
-          ],
-          "id": "beaconsfield",
-          "name": "Beaconsfield"
+          "name": "Park St",
+          "childrens": ["Boylston", "Charles/MGH", "Government Center", "Downtown Crossing"]
         }
       },
       {
@@ -1922,27 +1508,6 @@
           ],
           "id": "warren-st",
           "name": "Warren St"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.088148,
-            42.347953
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-d",
-            "green",
-            "green-c",
-            "green-b"
-          ],
-          "id": "hynes-convention-center",
-          "name": "Hynes Convention Center"
         }
       },
       {
@@ -2017,26 +1582,8 @@
             "red"
           ],
           "id": "andrew",
-          "name": "Andrew"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.035215,
-            42.346621
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "silver",
-            "sl2"
-          ],
-          "id": "northern-ave-amp-harbor-st",
-          "name": "Northern Ave. &amp; Harbor St."
+          "name": "Andrew",
+          "childrens": ["Broadway", "JFK/UMass"]
         }
       },
       {
@@ -2062,63 +1609,6 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            -71.035882,
-            42.34769
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "silver",
-            "sl2"
-          ],
-          "id": "306-northern-ave",
-          "name": "306 Northern Ave."
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.087436,
-            42.267622
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "milton",
-          "lines": [
-            "mattapan",
-            "red"
-          ],
-          "id": "capen-st",
-          "name": "Capen St"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.112004,
-            42.331686
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-e",
-            "green"
-          ],
-          "id": "riverway",
-          "name": "Riverway"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
             -71.084266,
             42.329379
           ]
@@ -2133,25 +1623,6 @@
           ],
           "id": "dudley-square",
           "name": "Dudley Square"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.230712,
-            42.325981
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "newton",
-          "lines": [
-            "green-d",
-            "green"
-          ],
-          "id": "waban",
-          "name": "Waban"
         }
       },
       {
@@ -2191,7 +1662,8 @@
             "sl5"
           ],
           "id": "chinatown",
-          "name": "Chinatown"
+          "name": "Chinatown",
+          "childrens": ["Downtown Crossing", "Tufts Medical Center"]
         }
       },
       {
@@ -2231,7 +1703,8 @@
             "sl5"
           ],
           "id": "tufts-medical-center",
-          "name": "Tufts Medical Center"
+          "name": "Tufts Medical Center",
+          "childrens": ["Chinatown", "Back Bay"]
         }
       },
       {
@@ -2249,26 +1722,8 @@
             "red"
           ],
           "id": "kendallmit",
-          "name": "Kendall/MIT"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.095125,
-            42.337732
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-e",
-            "green"
-          ],
-          "id": "museum-of-fine-arts",
-          "name": "Museum of Fine Arts"
+          "name": "Kendall/MIT",
+          "childrens": ["Central Square", "Charles/MGH"]
         }
       },
       {
@@ -2286,28 +1741,8 @@
             "red"
           ],
           "id": "porter-square",
-          "name": "Porter Square"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.095128,
-            42.348783
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-d",
-            "green",
-            "green-c",
-            "green-b"
-          ],
-          "id": "kenmore",
-          "name": "Kenmore"
+          "name": "Porter Square",
+          "childrens": ["Davis", "Harvard"]
         }
       },
       {
@@ -2345,7 +1780,8 @@
             "orange"
           ],
           "id": "wellington",
-          "name": "Wellington"
+          "name": "Wellington",
+          "childrens": ["Malden", "Sullivan Square"]
         }
       },
       {
@@ -2363,26 +1799,8 @@
             "blue"
           ],
           "id": "revere-beach",
-          "name": "Revere Beach"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.217023,
-            42.318744
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "newton",
-          "lines": [
-            "green-d",
-            "green"
-          ],
-          "id": "eliot",
-          "name": "Eliot"
+          "name": "Revere Beach",
+          "childrens": ["Beachmont", "Wonderland"]
         }
       },
       {
@@ -2400,26 +1818,8 @@
             "blue"
           ],
           "id": "suffolk-downs",
-          "name": "Suffolk Downs"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.110215,
-            42.341042
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "brookline",
-          "lines": [
-            "green-d",
-            "green"
-          ],
-          "id": "longwood-station",
-          "name": "Longwood Station"
+          "name": "Suffolk Downs",
+          "childrens": ["Beachmont","Orient Heights"]
         }
       },
       {
@@ -2445,25 +1845,6 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            -71.24434,
-            42.333336
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "newton",
-          "lines": [
-            "green-d",
-            "green"
-          ],
-          "id": "woodland",
-          "name": "Woodland"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
             -71.061516,
             42.299992
           ]
@@ -2475,7 +1856,8 @@
             "red"
           ],
           "id": "fields-corner",
-          "name": "Fields Corner"
+          "name": "Fields Corner",
+          "childrens": ["Savin Hill", "Shawmut"]
         }
       },
       {
@@ -2497,7 +1879,8 @@
             "sl1"
           ],
           "id": "south-station",
-          "name": "South Station"
+          "name": "South Station",
+          "childrens": ["Downtown Crossing", "Broadway"]
         }
       },
       {
@@ -2515,7 +1898,8 @@
             "orange"
           ],
           "id": "stony-brook",
-          "name": "Stony Brook"
+          "name": "Stony Brook",
+          "childrens": ["Green Street", "Jackson Square"]
         }
       },
       {
@@ -2533,64 +1917,8 @@
             "blue"
           ],
           "id": "orient-heights",
-          "name": "Orient Heights"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.205966,
-            42.321539
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "newton",
-          "lines": [
-            "green-d",
-            "green"
-          ],
-          "id": "newton-highlands",
-          "name": "Newton Highlands"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.073249,
-            42.269965
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "milton",
-          "lines": [
-            "mattapan",
-            "red"
-          ],
-          "id": "central-ave",
-          "name": "Central Ave"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.16529,
-            42.326601
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "newton",
-          "lines": [
-            "green-d",
-            "green"
-          ],
-          "id": "chestnut-hill-station-d",
-          "name": "Chestnut Hill Station D"
+          "name": "Orient Heights",
+          "childrens": ["Suffolk Downs", "Wood Island"]
         }
       },
       {
@@ -2610,25 +1938,6 @@
           ],
           "id": "terminal-e",
           "name": "Terminal E"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.149406,
-            42.336197
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green",
-            "green-c"
-          ],
-          "id": "cleveland-circle",
-          "name": "Cleveland Circle"
         }
       },
       {
@@ -2665,7 +1974,8 @@
             "orange"
           ],
           "id": "roxbury-crossing",
-          "name": "Roxbury Crossing"
+          "name": "Roxbury Crossing",
+          "childrens": ["Jackson Square", "Ruggles"]
         }
       },
       {
@@ -2702,26 +2012,8 @@
             "red"
           ],
           "id": "central-square",
-          "name": "Central Square"
-        }
-      },
-      {
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -71.10437,
-            42.334268
-          ]
-        },
-        "type": "Feature",
-        "properties": {
-          "area": "boston",
-          "lines": [
-            "green-e",
-            "green"
-          ],
-          "id": "brigham-circle",
-          "name": "Brigham Circle"
+          "name": "Central Square",
+          "childrens": ["Harvard", "Kendall/MIT"]
         }
       },
       {
