@@ -6,7 +6,7 @@ class astarController {
 
     public async getPage(req: Request, res: Response) {
         const stopsListBlue = await Stops.find({ 'properties.lines': "blue" });
-        const stopsListRed = await Stops.find({ $and: [{ 'properties.lines': { $ne: "mattapan" } }, { 'properties.lines': "red" }] }); //get red stops except mattapan lines
+        const stopsListRed = await Stops.find({ 'properties.lines': "red" }); //get red stops except mattapan lines
         const stopsListOrange = await Stops.find({ 'properties.lines': "orange" });
         const stopsListGreen = await Stops.find({ 'properties.lines': "green" });
         res.render('astar/index', { stopsListBlue, stopsListRed, stopsListOrange, stopsListGreen });
@@ -55,20 +55,23 @@ class astarController {
                 }
                 if (band) {
                     let father = actual;
-                    let recorrido = [father]
+                    let recorrido = [father.properties.childrens[0].geojson]
                     while (father.properties.id != initial.properties.id) {
 
                         let aux = closed.filter(close => close.properties.id == father.properties.father);
 
                         if (aux[0] != undefined) {
+                            let geojson = aux[0].properties.childrens.filter(child => child.id == father.properties.id);
                             father = aux[0];
-                            recorrido.push(father);
+                            recorrido.push(geojson[0].geojson);
                         }
                     }
-                    for (const iterator of recorrido) {
-                        console.log("estacion:", [iterator.properties.id]);
-                    }
-                    res.send("exito");
+                    return res.status(200).json({
+                        polyline: {
+                            "type": "FeatureCollection",
+                            "features": recorrido
+                        }
+                    });
                 }
                 else {
                     res.send("pelas");
