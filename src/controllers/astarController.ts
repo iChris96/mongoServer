@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
-import fs from 'fs';
 import Stops from '../models/Stops';
-import { ok } from 'assert';
 
 
 class astarController {
@@ -18,26 +16,26 @@ class astarController {
         let g = 0;
         let band = false;
         try {
-            let initial = await Stops.findById({ _id: req.body.initial_station });
-            let final = await Stops.findById({ _id: req.body.final_station });
+            let initial = await Stops.findOne({ "properties.id": req.body.initial_station });
+            let final = await Stops.findOne({ "properties.id": req.body.final_station });
             if (initial != null && final != null) {
                 let actual = initial;
-                let opened = [{ "station": actual.properties.name, "f": 0, "father": actual.properties.name }];
+                let opened = [{ "station": actual.properties.id, "f": 0, "father": actual.properties.name }];
                 let closed = [];
                 while (opened.length > 0) {
 
                     for (const iterator of actual.properties.childrens) {
-                        let child = await Stops.findOne({ "properties.name": iterator });
+                        let child = await Stops.findOne({ "properties.id": iterator.id });
                         if (child != null) {
                             let h = this.calc_distance(child.geometry.coordinates, final.geometry.coordinates);
-                            if (closed.filter(close => close.properties.name == child?.properties.name).length == 0) {
+                            if (closed.filter(close => close.properties.id == child?.properties.id).length == 0) {
                                 // if (child.properties.name == "State") {
                                     // console.log("si");
 
                                     // opened.push({ station: iterator, f: h + g + 1000123123123, father: actual.properties.name });
                                 // }
                                 // else {
-                                    opened.push({ station: iterator, f: h + g, father: actual.properties.name });
+                                    opened.push({ station: iterator.id, f: h + g, father: actual.properties.id });
                                 // }
 
                             }
@@ -56,7 +54,7 @@ class astarController {
                     // console.log(opened);
                     let aux_mejor = opened.shift();
                     if (aux_mejor != undefined) {
-                        let mejor = await Stops.findOne({ "properties.name": aux_mejor.station });
+                        let mejor = await Stops.findOne({ "properties.id": aux_mejor.station });
 
                         if (mejor != null) {
                             mejor.properties.father = aux_mejor.father;
@@ -65,7 +63,7 @@ class astarController {
                             actual = mejor;
                         }
                     }
-                    if (actual.properties.name == final.properties.name) {
+                    if (actual.properties.id == final.properties.id) {
                         band = true;
                         break;
                     }
@@ -73,9 +71,9 @@ class astarController {
                 if (band) {
                     let father = actual;
                     let recorrido = [father]
-                    while (father.properties.name != initial.properties.name) {
+                    while (father.properties.id != initial.properties.id) {
 
-                        let aux = closed.filter(close => close.properties.name == father.properties.father);
+                        let aux = closed.filter(close => close.properties.id == father.properties.father);
 
                         if (aux[0] != undefined) {
                             father = aux[0];
@@ -83,7 +81,7 @@ class astarController {
                         }
                     }
                     for (const iterator of recorrido) {
-                        console.log("estacion:", [iterator.properties.name]);
+                        console.log("estacion:", [iterator.properties.id]);
                     }
                     res.send("exito");
                 }
