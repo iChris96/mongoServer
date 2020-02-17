@@ -15,7 +15,18 @@ export interface IStop extends Document {
     childrens: [{
       id: String,
       destination: String,
-      geojson: {}
+      geojson: {
+        geometry: {
+          type: String,
+          coordinates: [ [Number] ]
+        },
+        type: String,
+        properties: {
+          directions: [ String ]
+          id: String
+          name: String
+        }
+      }
     }],
     father: String
   },
@@ -35,7 +46,18 @@ const StopsSchema = new Schema({
       childrens: [{
         id: {type: String},
         destination: {type:String},
-        geojson: {}
+        geojson: {
+          geometry: {
+            type: { type: String, required: false, unique: false },
+            coordinates: [ [ { type: Number, required: false, unique: false }] ],
+          },
+          type: { type: String, required: false, unique: false },
+          properties: {
+            directions: [ { type: String, required: false, unique: false } ],
+            id: { type: String, required: false, unique: false },
+            name: { type: String, required: false, unique: false },
+          }
+        }
       }],
       father: {type: String}
     },
