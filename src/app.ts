@@ -12,6 +12,7 @@ import jsonRoutes from './routes/json';
 import authRoutes from './routes/auth';
 import stopsRoutes from './routes/stops';
 import csvRoutes from './routes/csv';
+import astarRoutes from './routes/astar';
 
 
 
@@ -73,6 +74,7 @@ class Application {
         this.app.use('/stops',stopsRoutes);
         this.app.use(express.static(path.join(__dirname, 'public'))); //server knows public folder
         this.app.use('/csv', csvRoutes);
+        this.app.use('/', astarRoutes);
     }
 
     start(){ 
