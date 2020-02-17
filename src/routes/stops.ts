@@ -24,4 +24,24 @@ router.route('/all')
     stopsController.getAllStops
 );
 
+router.route('/orange/coordinates')
+.get(
+    stopsController.getOrangeCoordinates
+);
+
+router.route('/blue/coordinates')
+.get(
+    stopsController.getBlueCoordinates
+);
+
+router.route('/red/coordinates')
+.get(
+    stopsController.getRedCoordinates
+);
+
+router.route('/polyline')
+.get(
+    stopsController.getSomePolyline
+);
+
 export default router;

@@ -310,7 +310,6 @@
         "properties": {
           "area": "boston",
           "lines": [
-            "mattapan",
             "red"
           ],
           "id": "ashmont",
