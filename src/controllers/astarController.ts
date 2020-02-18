@@ -55,22 +55,28 @@ class astarController {
                 }
                 if (band) {
                     let father = actual;
-                    let recorrido = [father.properties.childrens[0].geojson]
-                    while (father.properties.id != initial.properties.id) {
 
+                    let recorrido = [{}]
+                    let estaciones = [{estacion:father.properties.id, coordinates: father.geometry.coordinates}];
+                    while (father.properties.id != initial.properties.id) {
+                        
                         let aux = closed.filter(close => close.properties.id == father.properties.father);
 
                         if (aux[0] != undefined) {
                             let geojson = aux[0].properties.childrens.filter(child => child.id == father.properties.id);
                             father = aux[0];
+                            estaciones.push({estacion:father.properties.id, coordinates: father.geometry.coordinates});
                             recorrido.push(geojson[0].geojson);
                         }
+                        
                     }
+                    
                     return res.status(200).json({
                         polyline: {
                             "type": "FeatureCollection",
                             "features": recorrido
-                        }
+                        },
+                        // stops: estaciones
                     });
                 }
                 else {
