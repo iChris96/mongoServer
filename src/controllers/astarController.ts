@@ -75,7 +75,7 @@ class astarController {
                         polyline: {
                             "type": "FeatureCollection",
                             "features": recorrido
-                        },
+                        }
                         // stops: estaciones
                     });
                 }
