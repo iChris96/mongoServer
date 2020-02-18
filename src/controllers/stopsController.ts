@@ -36,9 +36,9 @@ class StopsController{
     //Get all stops
     public async getAllStops (req: Request, res: Response) {
         const stopsList = await Stops.find({ $or: [{ $and: [ {'properties.lines': { $ne: "mattapan" }}, {'properties.lines': "red"}]},{ 'properties.lines': "orange" },{ 'properties.lines': "blue" }]});
-        //console.log(stopsList);
+        const orderList = [...stopsList].sort((first, second) => String(first.properties.name).localeCompare(String(second.properties.name)))
         return res.status(200).json({
-            stopsList: stopsList
+            stopsList: orderList
         });
     }
 
@@ -118,13 +118,13 @@ class StopsController{
                             "type": "LineString",
                             "coordinates": [
                                 [
-                                    -71.107125,
-                                    42.310359
-                                  ],
-                                  [
-                                    -71.113377,
-                                    42.300023
-                                  ]
+                                    -71.059195,
+                                    42.359868
+                                ],
+                                [
+                                    -71.062129,
+                                    42.361457
+                                ]
                             ]
                         },
                         "type": "Feature",
@@ -133,15 +133,65 @@ class StopsController{
                                 "N",
                                 "S"
                             ],
-                            "id": "orange",
-                            "name": "Orange Line"
+                            "id": "blue",
+                            "name": "Blue Line"
                         }
+                    },
+                    {
+                        "geometry": {
+                            "type": "LineString",
+                            "coordinates": [
+                                [
+                                    -71.057421,
+                                    42.359065
+                                ],
+                                [
+                                    -71.059195,
+                                    42.359868
+                                ]
+                            ]
+                        },
+                        "type": "Feature",
+                        "properties": {
+                            "directions": [
+                                "N",
+                                "S"
+                            ],
+                            "id": "blue",
+                            "name": "Blue Line"
+                        }
+                  },
+                  {
+                    "geometry": {
+                        "type": "LineString",
+                        "coordinates": [
+                            [
+                                -71.051807,
+                                42.359634
+                            ],
+                            [
+                                -71.057421,
+                                42.359065
+                            ]
+                        ]
+                    },
+                    "type": "Feature",
+                    "properties": {
+                        "directions": [
+                            "N",
+                            "S"
+                        ],
+                        "id": "blue",
+                        "name": "Blue Line"
                     }
+                }
                 ]
             }
         });
     }
+
 }
+
 
 
 export const stopsController = new StopsController();
