@@ -53,9 +53,10 @@ class astarController {
                         }
                     }
                 }
+                console.log(actual)
                 if (band) {
                     let father = actual;
-                    let recorrido = [father.properties.childrens[0].geojson]
+                    let recorrido = [{}]
                     while (father.properties.id != initial.properties.id) {
 
                         let aux = closed.filter(close => close.properties.id == father.properties.father);
