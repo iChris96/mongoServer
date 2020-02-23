@@ -11,4 +11,9 @@ router.route('/astar')
     .post(
         astar_Controller.algorithm.bind(astar_Controller)
     )
+
+router.route('/knn')
+    .get(
+        astar_Controller.knn
+    )
 export default router;

@@ -1,9 +1,24 @@
+// @ts-nocheck
 import { Request, Response } from 'express';
 import Stops from '../models/Stops';
-
-
+import scikit from 'scikit-learn';
 class astarController {
 
+    public knn(req:Request, res: Response){
+    //Estacion, dia(numero), mes(numero), hora, minuto, entradas
+        const features = [
+            ['Andrew Square',1,2,4,32,1],
+            ['Andrew Square',1,2,4,33,5],
+            ['Andrew Square',1,2,4,34,6],
+            ['Andrew Square',1,2,4,35,2],
+            ['Andrew Square',1,2,4,36,12],
+            ['Andrew Square',1,2,4,37,3],
+            ['Andrew Square',1,2,4,38,1],
+            ['Andrew Square',1,2,4,39,3],
+            ['Andrew Square',1,2,4,40,3],
+        ];
+        
+    }
     public async getPage(req: Request, res: Response) {
         const stopsListBlue = await Stops.find({ 'properties.lines': "blue" });
         const stopsListRed = await Stops.find({ 'properties.lines': "red" }); //get red stops except mattapan lines
