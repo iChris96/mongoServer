@@ -40,7 +40,7 @@ class astarController {
                         band = true;
                         break;
                     }
-                    else{
+                    else {
                         for (const iterator of actual.properties.childrens) {
                             let child = await Stops.findOne({ "properties.id": iterator.id });
                             if (child != null) {
@@ -48,7 +48,7 @@ class astarController {
                                 if (closed.filter(close => close.properties.id == iterator.id).length == 0) {
                                     opened.push({ station: iterator.id, f: h + g, father: actual.properties.id });
                                 }
-    
+
                             }
                         }
                     }
@@ -60,29 +60,30 @@ class astarController {
                     let recorrido = [{}]
                     while (father.properties.id != initial.properties.id) {
 
-                    let recorrido = [{}]
-                    let estaciones = [{}];
-                    while (father.properties.id != initial.properties.id) {
-                        
-                        let aux = closed.filter(close => close.properties.id == father.properties.father);
+                        let recorrido = [{}]
+                        let estaciones = [{}];
+                        while (father.properties.id != initial.properties.id) {
 
-                        if (aux[0] != undefined) {
-                            let geojson = aux[0].properties.childrens.filter(child => child.id == father.properties.id);
-                            father = aux[0];
-                            estaciones.push({estacion:father.properties.id, coordinates: father.geometry.coordinates});
-                            recorrido.push(geojson[0].geojson);
+                            let aux = closed.filter(close => close.properties.id == father.properties.father);
+
+                            if (aux[0] != undefined) {
+                                let geojson = aux[0].properties.childrens.filter(child => child.id == father.properties.id);
+                                father = aux[0];
+                                estaciones.push({ estacion: father.properties.id, coordinates: father.geometry.coordinates });
+                                recorrido.push(geojson[0].geojson);
+                            }
                         }
-                        
+                        console.log(estaciones);
+
+                        return res.status(200).json({
+                            polyline: {
+                                "type": "FeatureCollection",
+                                "features": recorrido
+                            },
+                            stops: estaciones.reverse()
+                        });
                     }
-                    console.log(estaciones);
-                    
-                    return res.status(200).json({
-                        polyline: {
-                            "type": "FeatureCollection",
-                            "features": recorrido
-                        },
-                        stops: estaciones.reverse()
-                    });
+
                 }
                 else {
                     res.send("pelas");
@@ -107,19 +108,19 @@ class astarController {
         }
         return to_return;
     }
-    public rad = function(x:number) {return x*Math.PI/180;}
+    public rad = function (x: number) { return x * Math.PI / 180; }
     public calc_distance(initial: Array<any>, final: Array<any>) {
         let initial_lat = initial[1];
         let initial_long = initial[0];
         let final_lat = final[1];
         let final_long = final[0];
-        
+
         var R = 6378.137; //Radio de la tierra en km
-         var dLat = this.rad( final_lat - initial_lat );
-         var dLong = this.rad( final_long - initial_long );
-        var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(this.rad(initial_lat)) * Math.cos(this.rad(final_lat)) * Math.sin(dLong/2) * Math.sin(dLong/2);
-         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-         var d = R * c;
+        var dLat = this.rad(final_lat - initial_lat);
+        var dLong = this.rad(final_long - initial_long);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(this.rad(initial_lat)) * Math.cos(this.rad(final_lat)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c;
         return d; //Retorna tres decimales
     }
 }
