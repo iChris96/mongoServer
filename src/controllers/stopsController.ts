@@ -33,9 +33,18 @@ class StopsController{
         });
     }
 
+    //Get green stops
+    public async getGreenStops (req: Request, res: Response) {
+        const stopsList = await Stops.find({ 'properties.lines': "green" });
+        //console.log(stopsList);
+        return res.status(200).json({
+            stopsList: stopsList
+        });
+    }
+
     //Get all stops
     public async getAllStops (req: Request, res: Response) {
-        const stopsList = await Stops.find({ $or: [{ $and: [ {'properties.lines': { $ne: "mattapan" }}, {'properties.lines': "red"}]},{ 'properties.lines': "orange" },{ 'properties.lines': "blue" }]});
+        const stopsList = await Stops.find({ $or: [{ $and: [ {'properties.lines': { $ne: "mattapan" }}, {'properties.lines': "red"}]},{ 'properties.lines': "orange" },{ 'properties.lines': "blue" },{ 'properties.lines': "green" }]});
         const orderList = [...stopsList].sort((first, second) => String(first.properties.name).localeCompare(String(second.properties.name)))
         return res.status(200).json({
             stopsList: orderList
