@@ -56,22 +56,32 @@ class astarController {
                 console.log(actual)
                 if (band) {
                     let father = actual;
+
                     let recorrido = [{}]
                     while (father.properties.id != initial.properties.id) {
 
+                    let recorrido = [{}]
+                    let estaciones = [{}];
+                    while (father.properties.id != initial.properties.id) {
+                        
                         let aux = closed.filter(close => close.properties.id == father.properties.father);
 
                         if (aux[0] != undefined) {
                             let geojson = aux[0].properties.childrens.filter(child => child.id == father.properties.id);
                             father = aux[0];
+                            estaciones.push({estacion:father.properties.id, coordinates: father.geometry.coordinates});
                             recorrido.push(geojson[0].geojson);
                         }
+                        
                     }
+                    console.log(estaciones);
+                    
                     return res.status(200).json({
                         polyline: {
                             "type": "FeatureCollection",
                             "features": recorrido
-                        }
+                        },
+                        stops: estaciones.reverse()
                     });
                 }
                 else {
