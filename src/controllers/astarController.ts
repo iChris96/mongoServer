@@ -57,7 +57,7 @@ class astarController {
                     let father = actual;
 
                     let recorrido = [{}]
-                    let estaciones = [{estacion:father.properties.id, coordinates: father.geometry.coordinates}];
+                    let estaciones = [{}];
                     while (father.properties.id != initial.properties.id) {
                         
                         let aux = closed.filter(close => close.properties.id == father.properties.father);
@@ -70,13 +70,14 @@ class astarController {
                         }
                         
                     }
+                    console.log(estaciones);
                     
                     return res.status(200).json({
                         polyline: {
                             "type": "FeatureCollection",
                             "features": recorrido
-                        }
-                        // stops: estaciones
+                        },
+                        stops: estaciones.reverse()
                     });
                 }
                 else {
