@@ -8,4 +8,6 @@ router.route('/').get(knnController.test);
 
 router.route('/2').get(knnController.test2);
 
+router.route('/byStation').post(knnController.knnByStation);
+
 export default router;
