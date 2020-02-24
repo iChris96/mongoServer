@@ -87,8 +87,6 @@ class astarController {
 					let father = actual;
 
 					let recorrido = [{}];
-					while (father.properties.id != initial.properties.id) {
-						let recorrido = [{}];
 						let estaciones = [{}];
 						while (father.properties.id != initial.properties.id) {
 							let aux = closed.filter(
@@ -106,7 +104,6 @@ class astarController {
 								});
 								recorrido.push(geojson[0].geojson);
 							}
-						}
 						console.log(estaciones);
 
 						return res.status(200).json({
