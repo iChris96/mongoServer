@@ -10,4 +10,6 @@ router.route('/2').get(knnController.test2);
 
 router.route('/byStation').post(knnController.knnByStation);
 
+router.route('/testWithRandom').get(knnController.testWithRandom);
+
 export default router;

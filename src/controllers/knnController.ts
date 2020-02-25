@@ -191,6 +191,162 @@ class KnnController {
 
 		res.status(200).send({ entries: goal });
 	}
+
+	public async testWithRandom(req: Request, res: Response) {
+		const stationReq: string = 'Airport';
+		const instanceToPrediceReq: Array<Number> = [20, 16, 11];
+		console.log(
+			'Intance to find, Station:',
+			stationReq,
+			'data',
+			instanceToPrediceReq
+		);
+		const allStopsNames = [
+			'Airport',
+			'Alewife',
+			'Andrew Square',
+			'Aquarium',
+			'Ashmont',
+			'Back Bay',
+			'Beachmont',
+			'Bowdoin',
+			'Boylston',
+			'Braintree',
+			'Broadway',
+			'Central Square',
+			'Charles/MGH',
+			'Chinatown',
+			'Community College',
+			'Davis Square',
+			'Downtown Crossing',
+			'Fields Corner',
+			'Forest Hills',
+			'Government Center',
+			'Green Street',
+			'Harvard',
+			'Haymarket',
+			'Jackson Square',
+			'JFK/U Mass',
+			'Kendall Square',
+			'Malden',
+			'Massachusetts Ave.',
+			'Maverick',
+			'North Quincy',
+			'North Station',
+			'Oak Grove',
+			'Orient Heights',
+			'Park Street',
+			'Porter Square',
+			'Quincy Adams',
+			'Quincy Center',
+			'Revere Beach',
+			'Roxbury Crossing',
+			'Ruggles',
+			'Savin Hill',
+			'Shawmut',
+			'South Station',
+			'State Street',
+			'Stony Brook',
+			'Suffolk Downs',
+			'Sullivan Square',
+			'Tufts Medical Center',
+			'Wellington',
+			'Wollaston',
+			'Wonderland',
+			'Wood Island'
+		];
+
+		//MAKING INSTANCE TO PREDICE ENTRIES WITH KNN
+		let preArray: Array<Number> = allStopsNames.map((name, index) => {
+			return name === stationReq ? 1 : 0;
+		});
+		//console.log(preArray);
+		let instance = preArray.concat(instanceToPrediceReq);
+		//console.log('Intance find: ', instance);
+		//console.log('Intance size:', instance.length);
+
+		//CALL RANDOM ENTRIES FROM DB
+		let entries = await EntriesKNN.aggregate([{ $sample: { size: 15 } }]);
+		//console.log('entries:', entries);
+
+		//INSERT STATION ARRAY [0],[0],[0]... INTO EVERY FEATURE
+		let features: Array<Array<Number>> = entries.map(item => {
+			//console.log(item);
+			//console.log(Object.values(item.toObject()));
+			let preArray: Array<Number> = [];
+
+			allStopsNames.forEach(it => {
+				if (item.station === it) {
+					preArray.push(1);
+				} else {
+					preArray.push(0);
+				}
+			});
+			console.log(
+				'station:',
+				item.station,
+				'    day:',
+				item.day,
+				'    hour:',
+				item.hour,
+				'    minutes:',
+				item.minutes,
+				'           -> entries:',
+				item.entries
+			);
+
+			return preArray.concat([item.day, item.hour, item.minutes, item.entries]);
+		});
+
+		//UNCOMENT TO TESTING -> pushing static's features into features for testing purpose
+		/*
+		// prettier-ignore
+		features.push([ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,16,5,2 ]);
+		// prettier-ignore
+		features.push([ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,16,7,4 ]);
+		// prettier-ignore
+		features.push([ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,16,9,6]);
+		*/
+
+		//console.log('features:', features);
+		//console.log('features size: ', features.length);
+
+		//DEFINE CUSTOM DISTANCE FUNCTION
+		const euclidian = (a: Array<number>, b: Array<number>) => {
+			return (
+				a
+					.map((euclidian, i) => Math.abs(euclidian - b[i]) ** 2) // square the difference
+					.reduce((sum, now) => sum + now) ** // sum
+				(1 / 2)
+			);
+		};
+
+		//Set Knn -> dimension, goalIndex, customDistanceFunction, customGoalFunction
+		const knn = new KNN(55, 55, euclidian);
+
+		//set Training -> outpts, testSize, shuffleTimes, ktimes, normalize
+		let [accuracy, k] = knn.training(
+			features,
+			features.length,
+			features.length,
+			3,
+			true
+		);
+
+		//set Goal ->
+		let goal = knn.predict(features, instance);
+
+		console.log(
+			'Accuracy about: ' +
+				accuracy +
+				', k: ' +
+				k +
+				', was predicted the goal as: ' +
+				goal
+		);
+
+		res.status(200).send({ entries: goal });
+	}
 }
 
 export const knnController = new KnnController();
