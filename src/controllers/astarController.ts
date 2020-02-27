@@ -53,15 +53,12 @@ class astarController {
                         }
                     }
                 }
-                console.log(actual)
                 if (band) {
                     let father = actual;
 
-                    let recorrido = [{}]
-                    while (father.properties.id != initial.properties.id) {
 
                         let recorrido = [{}]
-                        let estaciones = [{}];
+                        let estaciones = [{estacion: father.properties.id, coordinates: father.geometry.coordinates}];
                         while (father.properties.id != initial.properties.id) {
 
                             let aux = closed.filter(close => close.properties.id == father.properties.father);
@@ -73,8 +70,7 @@ class astarController {
                                 recorrido.push(geojson[0].geojson);
                             }
                         }
-                        console.log(estaciones);
-
+                        console.log(estaciones.reverse());
                         return res.status(200).json({
                             polyline: {
                                 "type": "FeatureCollection",
@@ -82,8 +78,6 @@ class astarController {
                             },
                             stops: estaciones.reverse()
                         });
-                    }
-
                 }
                 else {
                     res.send("pelas");
