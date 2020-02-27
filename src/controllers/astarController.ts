@@ -12,6 +12,8 @@ class astarController {
         res.render('astar/index', { stopsListBlue, stopsListRed, stopsListOrange, stopsListGreen });
     }
     public async algorithm(req: Request, res: Response) {
+        let traffic = 1000;
+        let station_traficated = "state-street"
         let h = 0;
         let g = 0;
         let band = false;
@@ -40,13 +42,21 @@ class astarController {
                         band = true;
                         break;
                     }
-                    else {
+                    else { 
                         for (const iterator of actual.properties.childrens) {
                             let child = await Stops.findOne({ "properties.id": iterator.id });
                             if (child != null) {
                                 let h = this.calc_distance(child.geometry.coordinates, final.geometry.coordinates);
                                 if (closed.filter(close => close.properties.id == iterator.id).length == 0) {
-                                    opened.push({ station: iterator.id, f: h + g, father: actual.properties.id });
+                                    if(iterator.id == station_traficated)
+                                    {
+                                        opened.push({ station: iterator.id, f: h + g + 1000, father: actual.properties.id });
+                                    }
+                                    else
+                                    {
+                                        opened.push({ station: iterator.id, f: h + g, father: actual.properties.id });
+                                    }
+                                    
                                 }
 
                             }
@@ -61,7 +71,7 @@ class astarController {
                     while (father.properties.id != initial.properties.id) {
 
                         let recorrido = [{}]
-                        let estaciones = [{}];
+                        let estaciones = [{estacion: father.properties.id, coordinates: father.geometry.coordinates}];
                         while (father.properties.id != initial.properties.id) {
 
                             let aux = closed.filter(close => close.properties.id == father.properties.father);
@@ -73,7 +83,7 @@ class astarController {
                                 recorrido.push(geojson[0].geojson);
                             }
                         }
-                        console.log(estaciones);
+                        console.log(estaciones.reverse());
 
                         return res.status(200).json({
                             polyline: {
@@ -86,7 +96,7 @@ class astarController {
 
                 }
                 else {
-                    res.send("pelas");
+                    res.send("Imposible llegar");
                 }
             }
         } catch (error) {
