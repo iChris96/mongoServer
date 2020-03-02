@@ -354,7 +354,8 @@ class KnnController {
 			[83, 0.5262942735596369, 16, 6],
 			[21, 0.8888800000000051, 11, 11],
 			[23, 0.8888800000000053, 13, 13],
-			[25, 0.8888800000000055, 15, 15],
+			[25, 0.8888800000000055, 15, 12],
+			[25, 0.8888800000000055, 15, 10],
 			[80, 0.5362942735596369, 16, 6],
 			[97, 0.5281527464327415, 16, 5],
 			[98, 0.5148717143151224, 16, 5]
@@ -366,7 +367,7 @@ class KnnController {
 		//let [accuracy, k] = knn.training(features, 2, features.length, 8, false);
 		let [accuracy, k] = [0, 0]; //IGNORE, TESTING PURPOSES
 		knn.setK(3); //custom BEST K
-		let goal = knn.predict(features, [20, 0.8888800000000055, 13]);
+		let goal = knn.predict(features, [25, 0.8888800000000055, 15]);
 		console.log(
 			'BEST K: ' +
 				k +
