@@ -12,4 +12,6 @@ router.route('/byStation').post(knnController.knnByStation);
 
 router.route('/testWithRandom').get(knnController.testWithRandom);
 
+router.route('/regression').get(knnController.testTryToRegression);
+
 export default router;

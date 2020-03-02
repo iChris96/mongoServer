@@ -266,7 +266,7 @@ class KnnController {
 		//console.log('Intance size:', instance.length);
 
 		//CALL RANDOM ENTRIES FROM DB
-		let entries = await EntriesKNN.aggregate([{ $sample: { size: 15 } }]);
+		let entries = await EntriesKNN.aggregate([{ $sample: { size: 500 } }]);
 		//console.log('entries:', entries);
 
 		//INSERT STATION ARRAY [0],[0],[0]... INTO EVERY FEATURE
@@ -347,6 +347,44 @@ class KnnController {
 
 		res.status(200).send({ entries: goal });
 	}
+
+	public async testTryToRegression(req: Request, res: Response) {
+		const features = [
+			[48, 0.5158030616769878, 16, 2],
+			[83, 0.5262942735596369, 16, 6],
+			[21, 0.8888800000000051, 11, 11],
+			[23, 0.8888800000000053, 13, 13],
+			[25, 0.8888800000000055, 15, 15],
+			[80, 0.5362942735596369, 16, 6],
+			[97, 0.5281527464327415, 16, 5],
+			[98, 0.5148717143151224, 16, 5]
+		];
+		//dimension, goalIndex, customDistanceFunction, customGoalFunction
+		const knn = new KNN(3);
+
+		//outpts, testSize, shuffleTimes, ktimes, normalize
+		//let [accuracy, k] = knn.training(features, 2, features.length, 8, false);
+		let [accuracy, k] = [0, 0]; //IGNORE, TESTING PURPOSES
+		knn.setK(3); //custom BEST K
+		let goal = knn.predict(features, [20, 0.8888800000000055, 13]);
+		console.log(
+			'BEST K: ' +
+				k +
+				' Accuracy about: ' +
+				accuracy +
+				', was predicted the goal as: ' +
+				goal
+		);
+
+		res.status(200).send({ goal: goal, accuracy: accuracy, k: k });
+	}
 }
+
+/*
+	-knn.training -> si lo comentas solo afecta el k, como si fuera buscando el mejor k para la hora de predecir.
+	-knn.predice  -> actualPoints es un array de distancia,goal del tamaño de los features, despues los ordena de
+		mayor a menor y selecciona los k primeros y hace unas validaciones para regresar frequency final
+
+*/
 
 export const knnController = new KnnController();
