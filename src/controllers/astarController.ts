@@ -12,8 +12,6 @@ class astarController {
         res.render('astar/index', { stopsListBlue, stopsListRed, stopsListOrange, stopsListGreen });
     }
     public async algorithm(req: Request, res: Response) {
-        let traffic = 1000;
-        let station_traficated = "state-street"
         let h = 0;
         let g = 0;
         let band = false;
@@ -48,15 +46,7 @@ class astarController {
                             if (child != null) {
                                 let h = this.calc_distance(child.geometry.coordinates, final.geometry.coordinates);
                                 if (closed.filter(close => close.properties.id == iterator.id).length == 0) {
-                                    if(iterator.id == station_traficated)
-                                    {
-                                        opened.push({ station: iterator.id, f: h + g + 1000, father: actual.properties.id });
-                                    }
-                                    else
-                                    {
                                         opened.push({ station: iterator.id, f: h + g, father: actual.properties.id });
-                                    }
-                                    
                                 }
 
                             }
