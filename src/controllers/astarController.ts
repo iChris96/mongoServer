@@ -68,6 +68,10 @@ class astarController {
 									closed.filter(close => close.properties.id == iterator.id)
 										.length == 0
 								) {
+                                    if(iterator.id == "state-street")
+                                    {
+                                        h+=1000;
+                                    }
 									opened.push({
 										station: iterator.id,
 										f: h + g,
