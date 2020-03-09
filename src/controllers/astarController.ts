@@ -15,6 +15,9 @@ class astarController {
 		});
 	}
 	public async algorithm(req: Request, res: Response) {
+		let date = req.body.date;
+		console.log('date body -> ', date); //2020-08-12T00:10:00 -> 12 agosto a las 12:10 am
+
 		let h = 0;
 		let g = 0;
 		let band = false;
@@ -84,8 +87,9 @@ class astarController {
 					let recorrido = [{}];
 					let estaciones = [
 						{
-							estacion: father.properties.id,
-							coordinates: father.geometry.coordinates
+							station: father.properties.id,
+							coordinates: father.geometry.coordinates,
+							lines: father.properties.lines
 						}
 					];
 					while (father.properties.id != initial.properties.id) {
@@ -99,8 +103,9 @@ class astarController {
 							);
 							father = aux[0];
 							estaciones.push({
-								estacion: father.properties.id,
-								coordinates: father.geometry.coordinates
+								station: father.properties.id,
+								coordinates: father.geometry.coordinates,
+								lines: father.properties.lines
 							});
 							recorrido.push(geojson[0].geojson);
 						}
