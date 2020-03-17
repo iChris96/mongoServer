@@ -17,13 +17,11 @@ class astarController {
 	}
 	public async algorithm(req: Request, res: Response) {
 		let date = new Date(req.body.date);
-		console.log('date body -> ', date.getFullYear(), date.getUTCMonth()+1, date.getDate(), date.getHours(), date.getMinutes()); //2020-08-12T00:10:00 -> 12 agosto a las 12:10 am
+		console.log('date body -> ', date.getFullYear(), date.getUTCMonth() + 1, date.getDate(), date.getHours(), date.getMinutes()); //2020-08-12T00:10:00 -> 12 agosto a las 12:10 am
 		//[25, 0.8888800000000055, 15] test 
 		// console.log('date body -> ', date); //2020-08-12T00:10:00 -> 12 agosto a las 12:10 am
 
-		const knn = await applyKnn('back-bay', 1, 5, 11);
-		console.log('knn->>>>', knn);
-		console.log('jeje');
+
 
 		let h = 0;
 		let g = 0;
@@ -35,19 +33,21 @@ class astarController {
 			let final = await Stops.findOne({ 'properties.id': req.body.final_station });
 			if (initial != null && final != null) {
 				let actual = initial;
+				let p_knn = await applyKnn(req.body.initial_station, date.getDate(), date.getHours(), date.getMinutes());
+				console.log('knn->>>>', p_knn);
 				let opened = [
 					{
 						station: actual.properties.id,
 						f: this.calc_distance(
 							actual.geometry.coordinates,
 							final.geometry.coordinates
-						),
+						) + p_knn,
 						father: actual.properties.name
 					}
 				];
 				let closed = [];
 				while (opened.length > 0) {
-					opened.sort(function(a, b) {
+					opened.sort(function (a, b) {
 						return a.f - b.f;
 					});
 					let aux_mejor = opened.shift();
@@ -70,17 +70,17 @@ class astarController {
 						for (const iterator of actual.properties.childrens) {
 							let child = await Stops.findOne({ 'properties.id': iterator.id });
 							if (child != null) {
+								p_knn = await applyKnn(child.properties.id.toString(), date.getDate(), date.getHours(), date.getMinutes());
+								console.log("knn intern ->>>", p_knn);
+								
 								let h = this.calc_distance(
 									child.geometry.coordinates,
 									final.geometry.coordinates
 								);
-								if (
-									closed.filter(close => close.properties.id == iterator.id)
-										.length == 0
-								) {
+								if (closed.filter(close => close.properties.id == iterator.id).length == 0) {
 									opened.push({
 										station: iterator.id,
-										f: h + g,
+										f: h + g+ p_knn,
 										father: actual.properties.id
 									});
 								}
@@ -147,7 +147,7 @@ class astarController {
 		}
 		return to_return;
 	}
-	public rad = function(x: number) {
+	public rad = function (x: number) {
 		return (x * Math.PI) / 180;
 	};
 	public calc_distance(initial: Array<any>, final: Array<any>) {
@@ -162,9 +162,9 @@ class astarController {
 		var a =
 			Math.sin(dLat / 2) * Math.sin(dLat / 2) +
 			Math.cos(this.rad(initial_lat)) *
-				Math.cos(this.rad(final_lat)) *
-				Math.sin(dLong / 2) *
-				Math.sin(dLong / 2);
+			Math.cos(this.rad(final_lat)) *
+			Math.sin(dLong / 2) *
+			Math.sin(dLong / 2);
 		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		var d = R * c;
 		return d; //Retorna tres decimales
