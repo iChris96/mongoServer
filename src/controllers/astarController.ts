@@ -15,9 +15,9 @@ class astarController {
 		});
 	}
 	public async algorithm(req: Request, res: Response) {
-		let date = req.body.date;
-		console.log('date body -> ', date); //2020-08-12T00:10:00 -> 12 agosto a las 12:10 am
-
+		let date = new Date(req.body.date);
+		console.log('date body -> ', date.getFullYear(), date.getUTCMonth()+1, date.getDate(), date.getHours(), date.getMinutes()); //2020-08-12T00:10:00 -> 12 agosto a las 12:10 am
+		//[25, 0.8888800000000055, 15] test 
 		let h = 0;
 		let g = 0;
 		let band = false;
