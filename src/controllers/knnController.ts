@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 const KNN = require('@artificialscience/k-nn');
 const nn = require('nearest-neighbor');
 import EntriesKNN, { IEntriesKnn } from '../models/EntriesKNN';
+import Stops, { IStop } from '../models/Stops';
 
 export interface IKnnRequest extends Request {
 	station: string; // or any other type
@@ -15,6 +16,8 @@ export interface IData {
 }
 
 class KnnController {
+	constructor() {}
+
 	public async test(req: Request, res: Response) {
 		/*let entries = await EntriesKNN.find(
 			{ station: 'Andrew Square' }
@@ -379,6 +382,217 @@ class KnnController {
 
 		res.status(200).send({ goal: goal, accuracy: accuracy, k: k });
 	}
+
+	public jamon(req: Request, res: Response) {
+		//getStopList();
+		//getStationIdByName('Back Bay');
+
+		//getStationById('5e2531cd566b39f509021599');
+
+		return res.send({ ok: 'ok' });
+	}
+
+	public async getBestSixGoals(req: Request, res: Response) {
+		//station - day - month - minutes
+		const reqStation = req.body.station;
+		const reqDate: Array<Number> = [req.body.day, req.body.hours, req.body.minutes];
+
+		//! preparar la instancia
+		const stationsList = await getStationList();
+		const stationId = getStationIdByName(reqStation, stationsList);
+		const stationsIdList = stationsList.map(station => {
+			return station._id;
+		});
+		const preStationInstance = buildPreStationInstance(stationId, stationsIdList);
+		const finalInstance = [...preStationInstance, ...reqDate];
+
+		//!Preparar features
+		const randomStationDocuments = await EntriesKNN.aggregate([
+			{ $sample: { size: 5 } }
+		]);
+		const stationFeatures = randomStationDocuments.map(station => {
+			//console.log(station);
+			const featureId = getStationIdByName(station.station, stationsList);
+			if (featureId) {
+				return [
+					...buildPreStationInstance(featureId, stationsIdList),
+					station.day,
+					station.hour,
+					station.minutes,
+					station.entries
+				];
+			}
+			return [
+				...buildPreStationInstance('', stationsIdList),
+				station.day,
+				station.hour,
+				station.minutes,
+				station.entries
+			];
+		});
+
+		//!Custom Distance Function
+		const euclidian = (a: Array<number>, b: Array<number>) => {
+			return (
+				a
+					.map((euclidian, i) => Math.abs(euclidian - b[i]) ** 2) // square the difference
+					.reduce((sum, now) => sum + now) ** // sum
+				(1 / 2)
+			);
+		};
+
+		//! KNN LOGIC
+		//Set Knn -> dimension, goalIndex, customDistanceFunction, customGoalFunction
+		const dimension = stationsList.length + reqDate.length;
+		const goalIndex = stationsList.length + reqDate.length;
+		//console.log(finalInstance);
+		//console.log(stationFeatures);
+
+		const knn = new KNN(dimension, goalIndex, euclidian);
+		knn.setK(3); //custom BEST K
+
+		//!Get best 6 goals with +1 minute difference
+		let goal = 0;
+
+		let times = 6;
+		while (times > 0) {
+			//console.log(finalInstance);
+			let currentGoal = knn.predict(stationFeatures, finalInstance);
+			//console.log(currentGoal);
+			goal += currentGoal;
+			const adder = finalInstance[finalInstance.length - 1].valueOf() + 1;
+			finalInstance.splice(finalInstance.length - 1, 1, adder);
+			times--;
+		}
+
+		goal /= 6;
+
+		res.status(200).send({ entries: goal });
+	}
+
+	public async applyKnn(
+		station: string,
+		day: number,
+		hours: number,
+		minutes: number
+	) {
+		//station - day - month - minutes
+		const reqStation = station;
+		const reqDate: Array<Number> = [day, hours, minutes];
+
+		//! preparar la instancia
+		const stationsList = await getStationList();
+		const stationId = getStationIdByName(reqStation, stationsList);
+		const stationsIdList = stationsList.map(station => {
+			return station._id;
+		});
+		const preStationInstance = buildPreStationInstance(stationId, stationsIdList);
+		const finalInstance = [...preStationInstance, ...reqDate];
+
+		//!Preparar features
+		const randomStationDocuments = await EntriesKNN.aggregate([
+			{ $sample: { size: 5 } }
+		]);
+		const stationFeatures = randomStationDocuments.map(station => {
+			//console.log(station);
+			const featureId = getStationIdByName(station.station, stationsList);
+			if (featureId) {
+				return [
+					...buildPreStationInstance(featureId, stationsIdList),
+					station.day,
+					station.hour,
+					station.minutes,
+					station.entries
+				];
+			}
+			return [
+				...buildPreStationInstance('', stationsIdList),
+				station.day,
+				station.hour,
+				station.minutes,
+				station.entries
+			];
+		});
+
+		//!Custom Distance Function
+		const euclidian = (a: Array<number>, b: Array<number>) => {
+			return (
+				a
+					.map((euclidian, i) => Math.abs(euclidian - b[i]) ** 2) // square the difference
+					.reduce((sum, now) => sum + now) ** // sum
+				(1 / 2)
+			);
+		};
+
+		//! KNN LOGIC
+		//Set Knn -> dimension, goalIndex, customDistanceFunction, customGoalFunction
+		const dimension = stationsList.length + reqDate.length;
+		const goalIndex = stationsList.length + reqDate.length;
+		//console.log(finalInstance);
+		//console.log(stationFeatures);
+
+		const knn = new KNN(dimension, goalIndex, euclidian);
+		knn.setK(3); //custom BEST K
+
+		//!Get best 6 goals with +1 minute difference
+		let goal = 0;
+
+		let times = 6;
+		while (times > 0) {
+			//console.log(finalInstance);
+			let currentGoal = knn.predict(stationFeatures, finalInstance);
+			//console.log(currentGoal);
+			goal += currentGoal;
+			const adder = finalInstance[finalInstance.length - 1].valueOf() + 1;
+			finalInstance.splice(finalInstance.length - 1, 1, adder);
+			times--;
+		}
+
+		goal /= 6;
+
+		return goal;
+	}
+}
+
+async function getStationList() {
+	const stations = await Stops.find();
+	return stations;
+}
+
+function getStationIdByName(stationName: string, stationList: Array<IStop>) {
+	const stationId = stationList.find(
+		element =>
+			element.properties.id === stationName ||
+			element.properties.name === stationName ||
+			element.properties.csvName === stationName
+	);
+
+	return stationId ? stationId._id : '';
+}
+
+function buildPreStationInstance(stationId: string, stationIdList: Array<String>) {
+	const preStationInstance = stationIdList.map(station => {
+		return stationId === station ? 1 : 0;
+	});
+	return preStationInstance;
+}
+
+async function getStationById(id: string) {
+	const stop = await Stops.findById(id);
+	//console.log('getStationById->', stop);
+	return stop;
+}
+
+async function getStationIdByNameAsync(station: string) {
+	const stop = await Stops.find({
+		$or: [
+			{ 'properties.id': station },
+			{ 'properties.name': station },
+			{ 'properties.csvName': station }
+		]
+	});
+	//console.log('getStationIdByName->', stop[0]._id);
+	return stop[0]._id;
 }
 
 /*

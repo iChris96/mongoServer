@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Stops from '../models/Stops';
+import { knnController } from './knnController';
 
 class astarController {
 	public async getPage(req: Request, res: Response) {
@@ -17,6 +18,10 @@ class astarController {
 	public async algorithm(req: Request, res: Response) {
 		let date = req.body.date;
 		console.log('date body -> ', date); //2020-08-12T00:10:00 -> 12 agosto a las 12:10 am
+
+		const knn = await applyKnn('back-bay', 1, 5, 11);
+		console.log('knn->>>>', knn);
+		console.log('jeje');
 
 		let h = 0;
 		let g = 0;
@@ -162,6 +167,16 @@ class astarController {
 		var d = R * c;
 		return d; //Retorna tres decimales
 	}
+}
+
+async function applyKnn(
+	station: string,
+	day: number,
+	hours: number,
+	minutes: number
+) {
+	const prediction = await knnController.applyKnn(station, day, hours, minutes);
+	return prediction;
 }
 
 export const astar_Controller = new astarController();

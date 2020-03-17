@@ -36,6 +36,7 @@ export interface IStop extends Document {
 }
 
 const StopsSchema = new Schema({
+	_id: String,
 	geometry: {
 		type: { type: String, required: true, unique: true },
 		coordinates: [{ type: Number, required: true, unique: true }]
