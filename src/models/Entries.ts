@@ -13,4 +13,4 @@ const EntriesSchema = new Schema({
 	entries: { type: Number, required: true, unique: false }
 });
 
-export default mongoose.model<IEntries>('Entries', EntriesSchema, 'entries');
+export default mongoose.model<IEntries>('x', EntriesSchema, 'entries');
