@@ -490,9 +490,15 @@ class KnnController {
 		const finalInstance = [...preStationInstance, ...reqDate];
 
 		//!Preparar features
+<<<<<<< HEAD
 		const randomStationDocuments = await EntriesKNN.find();
 		console.log('EntriesKNN size: ', randomStationDocuments.length);
 
+=======
+		const randomStationDocuments = await EntriesKNN.aggregate([
+			{ $sample: { size: 10000 } }
+		]);
+>>>>>>> 6b41507a42c7faebabc3795869ab8f99a7144fca
 		const stationFeatures = randomStationDocuments.map(station => {
 			//console.log(station);
 			const featureId = getStationIdByName(station.station, stationsList);
