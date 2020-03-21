@@ -491,7 +491,7 @@ class KnnController {
 
 		//!Preparar features
 		const randomStationDocuments = await EntriesKNN.aggregate([
-			{ $sample: { size: 5 } }
+			{ $sample: { size: 10000 } }
 		]);
 		const stationFeatures = randomStationDocuments.map(station => {
 			//console.log(station);

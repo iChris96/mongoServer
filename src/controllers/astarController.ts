@@ -27,6 +27,7 @@ class astarController {
 		let g = 0;
 		let band = false;
 		try {
+			console.time('loop');
 			let initial = await Stops.findOne({
 				'properties.id': req.body.initial_station
 			});
@@ -34,7 +35,7 @@ class astarController {
 			if (initial != null && final != null) {
 				let actual = initial;
 				let p_knn = await applyKnn(req.body.initial_station, date.getDate(), date.getHours(), date.getMinutes());
-				console.log('knn->>>>', p_knn);
+				let array_p= [{station: actual.properties.id, knn: p_knn}];
 				let opened = [
 					{
 						station: actual.properties.id,
@@ -45,6 +46,7 @@ class astarController {
 						father: actual.properties.name
 					}
 				];
+				let consult = 0;
 				let closed = [];
 				while (opened.length > 0) {
 					opened.sort(function (a, b) {
@@ -67,22 +69,25 @@ class astarController {
 						band = true;
 						break;
 					} else {
+						
 						for (const iterator of actual.properties.childrens) {
+							 
 							let child = await Stops.findOne({ 'properties.id': iterator.id });
 							if (child != null) {
-								p_knn = await applyKnn(child.properties.id.toString(), date.getDate(), date.getHours(), date.getMinutes());
-								console.log("knn intern ->>>", p_knn);
-								
-								let h = this.calc_distance(
-									child.geometry.coordinates,
-									final.geometry.coordinates
-								);
+
 								if (closed.filter(close => close.properties.id == iterator.id).length == 0) {
-									opened.push({
-										station: iterator.id,
-										f: h + g+ p_knn,
-										father: actual.properties.id
-									});
+									if(array_p.findIndex(i => i.station == iterator.id)== -1){
+										p_knn = await applyKnn(child.properties.id.toString(), date.getDate(), date.getHours(), date.getMinutes());
+										array_p.push({station: child.properties.id , knn: p_knn});
+									}
+									else{
+										let pos = array_p.findIndex(i => i.station == iterator.id);
+										p_knn= array_p[pos].knn;
+									}
+									// console.log(p_knn);
+									
+									h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
+									opened.push({station: iterator.id,f: h + g+ p_knn,father: actual.properties.id});
 								}
 							}
 						}
@@ -117,6 +122,7 @@ class astarController {
 							recorrido.push(geojson[0].geojson);
 						}
 					}
+					console.timeEnd('loop');
 					console.log(estaciones.reverse());
 					return res.status(200).json({
 						polyline: {
@@ -177,6 +183,8 @@ async function applyKnn(
 	hours: number,
 	minutes: number
 ) {
+	console.log(station);
+	
 	const prediction = await knnController.applyKnn(station, day, hours, minutes);
 	return prediction;
 }
