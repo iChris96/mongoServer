@@ -490,9 +490,9 @@ class KnnController {
 		const finalInstance = [...preStationInstance, ...reqDate];
 
 		//!Preparar features
-		const randomStationDocuments = await EntriesKNN.aggregate([
-			{ $sample: { size: 5 } }
-		]);
+		const randomStationDocuments = await EntriesKNN.find();
+		console.log('EntriesKNN size: ', randomStationDocuments.length);
+
 		const stationFeatures = randomStationDocuments.map(station => {
 			//console.log(station);
 			const featureId = getStationIdByName(station.station, stationsList);
@@ -559,7 +559,7 @@ async function getStationList() {
 	return stations;
 }
 
-function getStationIdByName(stationName: string, stationList: Array<IStop>) {
+function getStationIdByName(stationName: String, stationList: Array<IStop>) {
 	const stationId = stationList.find(
 		element =>
 			element.properties.id === stationName ||
