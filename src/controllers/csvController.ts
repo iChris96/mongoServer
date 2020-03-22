@@ -27,7 +27,7 @@ class CsvController {
 		stations.forEach(async x => {
 			await Entries.aggregate([
 				{ $match: { station: x.properties.csvName } },
-				{ $sample: { size: 1000 } },
+				{ $sample: { size: 250 } },
 				{ $merge: 'entriesClean' }
 			]);
 		});

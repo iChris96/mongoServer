@@ -3,6 +3,7 @@ const KNN = require('@artificialscience/k-nn');
 const nn = require('nearest-neighbor');
 import EntriesKNN, { IEntriesKnn } from '../models/EntriesKNN';
 import Stops, { IStop } from '../models/Stops';
+const { PerformanceObserver, performance } = require('perf_hooks');
 
 export interface IKnnRequest extends Request {
 	station: string; // or any other type
@@ -383,15 +384,6 @@ class KnnController {
 		res.status(200).send({ goal: goal, accuracy: accuracy, k: k });
 	}
 
-	public jamon(req: Request, res: Response) {
-		//getStopList();
-		//getStationIdByName('Back Bay');
-
-		//getStationById('5e2531cd566b39f509021599');
-
-		return res.send({ ok: 'ok' });
-	}
-
 	public async getBestSixGoals(req: Request, res: Response) {
 		//station - day - month - minutes
 		const reqStation = req.body.station;
@@ -476,6 +468,7 @@ class KnnController {
 		hours: number,
 		minutes: number
 	) {
+		//var start0 = performance.now();
 		//station - day - month - minutes
 		const reqStation = station;
 		const reqDate: Array<Number> = [day, hours, minutes];
@@ -490,34 +483,37 @@ class KnnController {
 		const finalInstance = [...preStationInstance, ...reqDate];
 
 		//!Preparar features
-<<<<<<< HEAD
 		const randomStationDocuments = await EntriesKNN.find();
+		/*const randomStationDocuments = await EntriesKNN.aggregate([
+			{ $sample: { size: 500 } }
+		]);*/
 		console.log('EntriesKNN size: ', randomStationDocuments.length);
 
-=======
-		const randomStationDocuments = await EntriesKNN.aggregate([
-			{ $sample: { size: 10000 } }
-		]);
->>>>>>> 6b41507a42c7faebabc3795869ab8f99a7144fca
+		const preFeaturesMap = new Map();
+		stationsList.map((val, i) => {
+			preFeaturesMap.set(val.properties.csvName, i);
+		});
+
 		const stationFeatures = randomStationDocuments.map(station => {
-			//console.log(station);
-			const featureId = getStationIdByName(station.station, stationsList);
-			if (featureId) {
+			let auxArray = new Array(stationsList.length).fill(0);
+			if (preFeaturesMap.get(station.station)) {
+				auxArray[preFeaturesMap.get(station.station)] = 1;
 				return [
-					...buildPreStationInstance(featureId, stationsIdList),
+					...auxArray,
+					station.day,
+					station.hour,
+					station.minutes,
+					station.entries
+				];
+			} else {
+				return [
+					...auxArray,
 					station.day,
 					station.hour,
 					station.minutes,
 					station.entries
 				];
 			}
-			return [
-				...buildPreStationInstance('', stationsIdList),
-				station.day,
-				station.hour,
-				station.minutes,
-				station.entries
-			];
 		});
 
 		//!Custom Distance Function
@@ -555,6 +551,9 @@ class KnnController {
 		}
 
 		goal /= 6;
+
+		//var start1 = performance.now();
+		//console.log('All knn execution time -> ' + (start1 - start0) + ' milliseconds.');
 
 		return goal;
 	}
