@@ -17,11 +17,19 @@ class astarController {
 	}
 	public async algorithm(req: Request, res: Response) {
 		let date = new Date(req.body.date);
-		console.log('date body -> ', date.getFullYear(), date.getUTCMonth() + 1, date.getDate(), date.getHours(), date.getMinutes()); //2020-08-12T00:10:00 -> 12 agosto a las 12:10 am
-		//[25, 0.8888800000000055, 15] test 
+		console.log('init: ', req.body.initial_station);
+		console.log('final: ', req.body.final_station);
+
+		console.log(
+			'date body -> ',
+			date.getFullYear(),
+			date.getUTCMonth() + 1,
+			date.getDate(),
+			date.getHours(),
+			date.getMinutes()
+		); //2020-08-12T00:10:00 -> 12 agosto a las 12:10 am
+		//[25, 0.8888800000000055, 15] test
 		// console.log('date body -> ', date); //2020-08-12T00:10:00 -> 12 agosto a las 12:10 am
-
-
 
 		let h = 0;
 		let g = 0;
@@ -31,30 +39,40 @@ class astarController {
 			let initial = await Stops.findOne({
 				'properties.id': req.body.initial_station
 			});
-			let final = await Stops.findOne({ 'properties.id': req.body.final_station });
+			let final = await Stops.findOne({
+				'properties.id': req.body.final_station
+			});
 			if (initial != null && final != null) {
 				let actual = initial;
-				let p_knn = await applyKnn(req.body.initial_station, date.getDate(), date.getHours(), date.getMinutes());
-				let array_p= [{station: actual.properties.id, knn: p_knn}];
+				let p_knn = await applyKnn(
+					initial.properties.csvName.toString(),
+					date.getDate(),
+					date.getHours(),
+					date.getMinutes()
+				);
+				let array_p = [{ station: actual.properties.id, knn: p_knn }];
 				let opened = [
 					{
 						station: actual.properties.id,
-						f: this.calc_distance(
-							actual.geometry.coordinates,
-							final.geometry.coordinates
-						) + p_knn,
+						f:
+							this.calc_distance(
+								actual.geometry.coordinates,
+								final.geometry.coordinates
+							) + p_knn,
 						father: actual.properties.name
 					}
 				];
 				let consult = 0;
 				let closed = [];
 				while (opened.length > 0) {
-					opened.sort(function (a, b) {
+					opened.sort(function(a, b) {
 						return a.f - b.f;
 					});
 					let aux_mejor = opened.shift();
 					if (aux_mejor != undefined) {
-						let mejor = await Stops.findOne({ 'properties.id': aux_mejor.station });
+						let mejor = await Stops.findOne({
+							'properties.id': aux_mejor.station
+						});
 						if (mejor != null) {
 							mejor.properties.father = aux_mejor.father;
 							closed.push(mejor);
@@ -69,25 +87,36 @@ class astarController {
 						band = true;
 						break;
 					} else {
-						
 						for (const iterator of actual.properties.childrens) {
-							 
 							let child = await Stops.findOne({ 'properties.id': iterator.id });
 							if (child != null) {
-
-								if (closed.filter(close => close.properties.id == iterator.id).length == 0) {
-									if(array_p.findIndex(i => i.station == iterator.id)== -1){
-										p_knn = await applyKnn(child.properties.id.toString(), date.getDate(), date.getHours(), date.getMinutes());
-										array_p.push({station: child.properties.id , knn: p_knn});
-									}
-									else{
+								if (
+									closed.filter(close => close.properties.id == iterator.id)
+										.length == 0
+								) {
+									if (array_p.findIndex(i => i.station == iterator.id) == -1) {
+										p_knn = await applyKnn(
+											child.properties.csvName.toString(),
+											date.getDate(),
+											date.getHours(),
+											date.getMinutes()
+										);
+										array_p.push({ station: child.properties.id, knn: p_knn });
+									} else {
 										let pos = array_p.findIndex(i => i.station == iterator.id);
-										p_knn= array_p[pos].knn;
+										p_knn = array_p[pos].knn;
 									}
 									// console.log(p_knn);
-									
-									h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
-									opened.push({station: iterator.id,f: h + g+ p_knn,father: actual.properties.id});
+
+									h = this.calc_distance(
+										child.geometry.coordinates,
+										final.geometry.coordinates
+									);
+									opened.push({
+										station: iterator.id,
+										f: h + g + p_knn,
+										father: actual.properties.id
+									});
 								}
 							}
 						}
@@ -153,7 +182,7 @@ class astarController {
 		}
 		return to_return;
 	}
-	public rad = function (x: number) {
+	public rad = function(x: number) {
 		return (x * Math.PI) / 180;
 	};
 	public calc_distance(initial: Array<any>, final: Array<any>) {
@@ -168,9 +197,9 @@ class astarController {
 		var a =
 			Math.sin(dLat / 2) * Math.sin(dLat / 2) +
 			Math.cos(this.rad(initial_lat)) *
-			Math.cos(this.rad(final_lat)) *
-			Math.sin(dLong / 2) *
-			Math.sin(dLong / 2);
+				Math.cos(this.rad(final_lat)) *
+				Math.sin(dLong / 2) *
+				Math.sin(dLong / 2);
 		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		var d = R * c;
 		return d; //Retorna tres decimales
@@ -184,8 +213,13 @@ async function applyKnn(
 	minutes: number
 ) {
 	console.log(station);
-	
-	const prediction = await knnController.applyKnn(station, day, hours, minutes);
+
+	const prediction = await knnController.applyKnnWithKnowStation(
+		station,
+		day,
+		hours,
+		minutes
+	);
 	return prediction;
 }
 

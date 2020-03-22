@@ -24,13 +24,13 @@ class CsvController {
 		const stations = await Stops.find();
 
 		//get 1000 size sample for each station in Entries csv-format data and make entriesClean collection
-		stations.forEach(async x => {
+		for (const x of stations) {
 			await Entries.aggregate([
 				{ $match: { station: x.properties.csvName } },
-				{ $sample: { size: 250 } },
+				{ $sample: { size: 4000 } },
 				{ $merge: 'entriesClean' }
 			]);
-		});
+		}
 
 		//re-build EntriesKNN collection by new entriesClean collection
 		await CleanEntries.aggregate([
@@ -41,24 +41,24 @@ class CsvController {
 					day: {
 						$dayOfMonth: {
 							$dateFromString: {
-								dateString: '$datetime',
-								format: '%d/%m/%Y %H:%M'
+								dateString: '$datetime'
+								//format: '%d/%m/%Y %H:%M'
 							}
 						}
 					},
 					hour: {
 						$hour: {
 							$dateFromString: {
-								dateString: '$datetime',
-								format: '%d/%m/%Y %H:%M'
+								dateString: '$datetime'
+								//format: '%d/%m/%Y %H:%M'
 							}
 						}
 					},
 					minutes: {
 						$minute: {
 							$dateFromString: {
-								dateString: '$datetime',
-								format: '%d/%m/%Y %H:%M'
+								dateString: '$datetime'
+								//format: '%d/%m/%Y %H:%M'
 							}
 						}
 					},
