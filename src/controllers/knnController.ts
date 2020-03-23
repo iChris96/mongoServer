@@ -557,6 +557,76 @@ class KnnController {
 
 		return goal;
 	}
+
+	public async applyKnnWithKnowStation(
+		station: string,
+		day: number,
+		hours: number,
+		minutes: number
+	) {
+		//var start0 = performance.now();
+		//station - day - month - minutes
+		const reqStation = station;
+		const reqDate: Array<Number> = [day, hours, minutes];
+
+		//! preparar la instancia
+		const finalInstance = [...reqDate];
+
+		//instance [15,1,8,?]
+		//feature [15,1,2,5]
+
+		//!Preparar features
+		//prettier-ignore
+		const randomStationDocuments = await EntriesKNN.find({ "station": reqStation });
+		/*const randomStationDocuments = await EntriesKNN.aggregate([
+			{ $sample: { size: 500 } }
+		]);*/
+		console.log('EntriesKNN size: ', randomStationDocuments.length);
+		const stationFeatures = randomStationDocuments.map(station => {
+			return [station.day, station.hour, station.minutes, station.entries];
+		});
+
+		//!Custom Distance Function
+		const euclidian = (a: Array<number>, b: Array<number>) => {
+			return (
+				a
+					.map((euclidian, i) => Math.abs(euclidian - b[i]) ** 2) // square the difference
+					.reduce((sum, now) => sum + now) ** // sum
+				(1 / 2)
+			);
+		};
+
+		//! KNN LOGIC
+		//Set Knn -> dimension, goalIndex, customDistanceFunction, customGoalFunction
+		const dimension = reqDate.length;
+		const goalIndex = reqDate.length;
+		//console.log(finalInstance);
+		//console.log(stationFeatures);
+
+		const knn = new KNN(dimension, goalIndex, euclidian);
+		knn.setK(3); //custom BEST K
+
+		//!Get best 6 goals with +1 minute difference
+		let goal = 0;
+
+		let times = 6;
+		while (times > 0) {
+			//console.log(finalInstance);
+			let currentGoal = knn.predict(stationFeatures, finalInstance);
+			//console.log(currentGoal);
+			goal += currentGoal;
+			const adder = finalInstance[finalInstance.length - 1].valueOf() + 1;
+			finalInstance.splice(finalInstance.length - 1, 1, adder);
+			times--;
+		}
+
+		goal /= 6;
+
+		//var start1 = performance.now();
+		//console.log('All knn execution time -> ' + (start1 - start0) + ' milliseconds.');
+
+		return goal;
+	}
 }
 
 async function getStationList() {
