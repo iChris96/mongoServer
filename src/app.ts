@@ -56,7 +56,7 @@ class Application {
 	middlewares() {
 		this.app.use(morgan('dev'));
 		this.app.use(express.json()); //app understands json
-		this.app.use(express.urlencoded({ extended: false })); //html form data interpreter
+		this.app.use(express.urlencoded({ extended: true })); //html form data interpreter
 		this.app.use(
 			multer({
 				storage,

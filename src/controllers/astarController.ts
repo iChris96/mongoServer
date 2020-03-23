@@ -4,15 +4,16 @@ import { knnController } from './knnController';
 
 class astarController {
 	public async getPage(req: Request, res: Response) {
-		const stopsListBlue = await Stops.find({ 'properties.lines': 'blue' });
-		const stopsListRed = await Stops.find({ 'properties.lines': 'red' }); //get red stops except mattapan lines
-		const stopsListOrange = await Stops.find({ 'properties.lines': 'orange' });
-		const stopsListGreen = await Stops.find({ 'properties.lines': 'green' });
+		const stopsList = await Stops.find().sort({"properties.name": 1});
 		res.render('astar/index', {
-			stopsListBlue,
-			stopsListRed,
-			stopsListOrange,
-			stopsListGreen
+			stopsList
+		});
+	}
+
+	public async simulatorPage(req: Request, res: Response){
+		const stopsList = await Stops.find().sort({"properties.name": 1});
+		res.render('astar/simulator', {
+			stopsList
 		});
 	}
 	public async algorithm(req: Request, res: Response) {
@@ -86,7 +87,7 @@ class astarController {
 									}
 									// console.log(p_knn);
 									
-									h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
+									let h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
 									opened.push({station: iterator.id,f: h + g+ p_knn,father: actual.properties.id});
 								}
 							}
@@ -175,6 +176,124 @@ class astarController {
 		var d = R * c;
 		return d; //Retorna tres decimales
 	}
+	public async simulator(req: Request, res: Response) {
+		let sim_stations = [{station: '', weight: 0}] ;
+	
+		const station = req.body.station;
+		const weight = req.body.weight;
+		if(Array.isArray(station)){
+			for (let index = 0; index < station.length; index++) {
+				const element = station[index];
+				const peso = weight[index];
+				sim_stations.push({station: element, weight:parseInt(peso)});
+			}
+		}
+		else{
+			sim_stations.push({station: station, weight: parseInt(weight)});
+		}
+		console.log(sim_stations);
+		let h = 0;
+		let g = 0;
+		let band = false;
+		try {
+			let initial = await Stops.findOne({
+				'properties.id': req.body.initial_station
+			});
+			let final = await Stops.findOne({ 'properties.id': req.body.final_station });
+			if (initial != null && final != null) {
+				let actual = initial;
+				let p_knn=0;
+				let opened = [
+					{
+						station: actual.properties.id,
+						f: this.calc_distance(
+							actual.geometry.coordinates,
+							final.geometry.coordinates
+						) + p_knn,
+						father: actual.properties.name
+					}
+				];
+				let closed = [];
+				while (opened.length > 0) {
+					opened.sort(function (a, b) {
+						return a.f - b.f;
+					});
+					let aux_mejor = opened.shift();
+					if (aux_mejor != undefined) {
+						let mejor = await Stops.findOne({ 'properties.id': aux_mejor.station });
+						if (mejor != null) {
+							mejor.properties.father = aux_mejor.father;
+							closed.push(mejor);
+							g += this.calc_distance(
+								initial.geometry.coordinates,
+								mejor.geometry.coordinates
+							);
+							actual = mejor;
+						}
+					}
+					if (actual.properties.id == final.properties.id) {
+						band = true;
+						break;
+					} else {
+						
+						for (const iterator of actual.properties.childrens) {
+							let child = await Stops.findOne({ 'properties.id': iterator.id });
+							if (child != null) {
+								if (closed.filter(close => close.properties.id == iterator.id).length == 0) {
+									if(sim_stations.findIndex(i => i.station == iterator.id)!= -1){
+										let pos = sim_stations.findIndex(i => i.station == iterator.id);
+										p_knn= sim_stations[pos].weight;
+									}
+									else{
+										p_knn = 0;
+									}
+									h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
+									opened.push({station: iterator.id,f:h + g+ p_knn,father: actual.properties.id});
+								}
+							}
+						}
+					}
+				}
+				if (band) {
+					let father = actual;
+
+					let recorrido = [{}];
+					let estaciones = [
+						{
+							station: father.properties.id,
+							coordinates: father.geometry.coordinates,
+							lines: father.properties.lines
+						}
+					];
+					while (father.properties.id != initial.properties.id) {
+						let aux = closed.filter(close => close.properties.id == father.properties.father);
+						if (aux[0] != undefined) {
+							let geojson = aux[0].properties.childrens.filter(child => child.id == father.properties.id);
+							father = aux[0];
+							estaciones.push({
+								station: father.properties.id,
+								coordinates: father.geometry.coordinates,
+								lines: father.properties.lines
+							});
+							recorrido.push(geojson[0].geojson);
+						}
+					}
+					console.log(estaciones.reverse());
+					return res.status(200).json({
+						polyline: {
+							type: 'FeatureCollection',
+							features: recorrido
+						},
+						stops: estaciones.reverse()
+					});
+				} else {
+					res.send('pelas');
+				}
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
 }
 
 async function applyKnn(
@@ -188,5 +307,7 @@ async function applyKnn(
 	const prediction = await knnController.applyKnn(station, day, hours, minutes);
 	return prediction;
 }
+
+
 
 export const astar_Controller = new astarController();

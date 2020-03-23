@@ -9,22 +9,7 @@
                     <label for="initial_station">Estacion Inicial</label>
                     <select class="form-control" name="initial_station" id="initial_station">
                         <optgroup label="___Azul___">
-                            {{#each stopsListBlue}}
-                            <option value="{{properties.id}}">{{properties.name}}</option>
-                            {{/each}}
-                        </optgroup>
-                        <optgroup label="___Roja____">
-                            {{#each stopsListRed}}
-                            <option value="{{properties.id}}">{{properties.name}}</option>
-                            {{/each}}
-                        </optgroup>
-                        <optgroup label="___Naranja___">
-                            {{#each stopsListOrange}}
-                            <option value="{{properties.id}}">{{properties.name}}</option>
-                            {{/each}}
-                        </optgroup>
-                        <optgroup label="___Verde___">
-                            {{#each stopsListGreen}}
+                            {{#each stopsList}}
                             <option value="{{properties.id}}">{{properties.name}}</option>
                             {{/each}}
                         </optgroup>
@@ -32,22 +17,7 @@
                     <label for="final_station">Estacion Final</label>
                     <select class="form-control" name="final_station" id="final_station">
                         <optgroup label="___Azul___">
-                            {{#each stopsListBlue}}
-                            <option value="{{properties.id}}">{{properties.name}}</option>
-                            {{/each}}
-                        </optgroup>
-                        <optgroup label="___Roja____">
-                            {{#each stopsListRed}}
-                            <option value="{{properties.id}}">{{properties.name}}</option>
-                            {{/each}}
-                        </optgroup>
-                        <optgroup label="___Naranja___">
-                            {{#each stopsListOrange}}
-                            <option value="{{properties.id}}">{{properties.name}}</option>
-                            {{/each}}
-                        </optgroup>
-                        <optgroup label="___Verde___">
-                            {{#each stopsListGreen}}
+                            {{#each stopsList}}
                             <option value="{{properties.id}}">{{properties.name}}</option>
                             {{/each}}
                         </optgroup>

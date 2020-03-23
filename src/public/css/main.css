@@ -63,10 +63,8 @@
 	 height: 100vh;
 }
  .twitter .container {
-	 display: flex;
-	 flex-direction: column;
-	 align-items: center;
-	 justify-content: center;
+	 margin-top: 10vh;
+	 display: block;
 	 height: 100%;
 }
  .twitter a {

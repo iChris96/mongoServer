@@ -1,0 +1,96 @@
+<div class="col-md-10 offset-md-1 box-body">
+            <h1>Simulador</h1>
+            
+            <form action="/simulator" method="POST">
+                <!-- Inputs -->
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <div class="row">
+                            <label for="initial_station">Estacion Inicial</label>
+                            <select class="form-control col-md-12" name="initial_station" id="initial_station" required>
+                                <optgroup label="___Azul___">
+                                    {{#each stopsList}}
+                                    <option value="{{properties.id}}">{{properties.name}}</option>
+                                    {{/each}}
+                                </optgroup>
+                            </select>
+                            <label for="final_station">Estacion Final</label>
+                            <select class="form-control col-md-12" name="final_station" id="final_station" required>
+                                <optgroup label="___Azul___">
+                                    {{#each stopsList}}
+                                    <option value="{{properties.id}}">{{properties.name}}</option>
+                                    {{/each}}
+                                </optgroup>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div class="row">
+                            <select style="height: 40vh;" class="form-control col-md-12" name="stations" id="stations" multiple>
+                                {{#each stopsList}}
+                                <option value="{{properties.id}}">{{properties.name}}</option>
+                                {{/each}}
+                            </select>
+
+                            <button type="button" style="width: 100%;" class="btn btn-primary form-control"
+                                onclick="Generate()">Agregar
+                                Afluencia</button>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" id="toGenerate">
+                    </div>
+                    <!-- Buttom -->
+                    <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                </div>
+
+            </form>
+</div>
+<script>
+    window.onload = Generate;
+    function Generate() {
+        if (document.getElementById("div_stations") != null) {
+            document.getElementById("div_stations").remove();
+        }
+        let bigDiv = document.createElement('div');
+        bigDiv.setAttribute("id", "div_stations");
+        let div = document.getElementById('toGenerate')
+        let stations = document.getElementById('stations').options;
+        for (let i = 0; i < stations.length; i++) {
+            if (stations[i].selected) {
+                let div_intern = document.createElement('div');
+                div_intern.className = "row form-group";
+                let label1 = document.createElement('label');
+                label1.textContent = "Estacion";
+                let input = document.createElement('input');
+                let label2 = document.createElement('label');
+                label2.textContent = "Personas";
+                let weight = document.createElement('input');
+                weight.type = "Number"
+                input.readOnly = true;
+                input.value = stations[i].value;
+                input.name = "station";
+                input.className = "form-control";
+                let div1 = document.createElement('div');
+                div1.className = "form-group col-md-6";
+                weight.className = "form-control";
+                weight.required = true;
+                weight.name = "weight";
+                let div2 = document.createElement('div');
+                div2.className = "form-group col-md-6";
+                div1.appendChild(label1);
+                div1.appendChild(input);
+                div2.appendChild(label2);
+                div2.appendChild(weight);
+
+                div_intern.appendChild(div1);
+                div_intern.appendChild(div2);
+                bigDiv.appendChild(div_intern)
+                div.appendChild(bigDiv);
+
+            }
+
+        }
+    }
+</script>

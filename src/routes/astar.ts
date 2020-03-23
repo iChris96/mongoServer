@@ -11,4 +11,7 @@ router.route('/astar')
     .post(
         astar_Controller.algorithm.bind(astar_Controller)
     )
+router.route('/simulator')
+        .get(astar_Controller.simulatorPage)
+        .post(astar_Controller.simulator.bind(astar_Controller))
 export default router;
