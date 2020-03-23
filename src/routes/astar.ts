@@ -14,4 +14,11 @@ router.route('/astar')
 router.route('/simulator')
         .get(astar_Controller.simulatorPage)
         .post(astar_Controller.simulator.bind(astar_Controller))
+
+router.route('/saveAfluency')
+        .get(astar_Controller.afluencyPage)
+        .post(astar_Controller.saveAfluency.bind(astar_Controller))
+
+router.route('/resetAfluency')
+        .get(astar_Controller.deleteAfluency)
 export default router;

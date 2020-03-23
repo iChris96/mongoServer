@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Stops from '../models/Stops';
+import AfluencyStation from '../models/AfluencyStations';
 import { knnController } from './knnController';
 
 class astarController {
@@ -14,6 +15,15 @@ class astarController {
 		const stopsList = await Stops.find().sort({"properties.name": 1});
 		res.render('astar/simulator', {
 			stopsList
+		});
+	}
+	
+	public async afluencyPage(req: Request, res: Response){
+		const stopsList = await Stops.find().sort({"properties.name": 1});
+		const actualList = await AfluencyStation.find().sort({"station": 1});
+		res.render('astar/saveAfluency', {
+			stopsList,
+			actualList
 		});
 	}
 	public async algorithm(req: Request, res: Response) {
@@ -206,21 +216,8 @@ class astarController {
 		return d; //Retorna tres decimales
 	}
 	public async simulator(req: Request, res: Response) {
-		let sim_stations = [{station: '', weight: 0}] ;
-	
-		const station = req.body.station;
-		const weight = req.body.weight;
-		if(Array.isArray(station)){
-			for (let index = 0; index < station.length; index++) {
-				const element = station[index];
-				const peso = weight[index];
-				sim_stations.push({station: element, weight:parseInt(peso)});
-			}
-		}
-		else{
-			sim_stations.push({station: station, weight: parseInt(weight)});
-		}
-		console.log(sim_stations);
+		 let sim_stations = await AfluencyStation.find() ;
+
 		let h = 0;
 		let g = 0;
 		let band = false;
@@ -231,7 +228,7 @@ class astarController {
 			let final = await Stops.findOne({ 'properties.id': req.body.final_station });
 			if (initial != null && final != null) {
 				let actual = initial;
-				let p_knn=0;
+				let p_knn = 0;
 				let opened = [
 					{
 						station: actual.properties.id,
@@ -271,7 +268,9 @@ class astarController {
 								if (closed.filter(close => close.properties.id == iterator.id).length == 0) {
 									if(sim_stations.findIndex(i => i.station == iterator.id)!= -1){
 										let pos = sim_stations.findIndex(i => i.station == iterator.id);
-										p_knn= sim_stations[pos].weight;
+										p_knn = sim_stations[pos].afluency;
+										console.log(p_knn);
+										
 									}
 									else{
 										p_knn = 0;
@@ -323,6 +322,47 @@ class astarController {
 			console.log(error);
 		}
 	}
+	public async saveAfluency(req: Request, res: Response){
+		console.log(req.body);
+		
+		let sim_stations = [] ;
+	
+		const station = req.body.station;
+		const afluency = (req.body.weight);
+		if(Array.isArray(station)){
+			for (let index = 0; index < station.length; index++) {
+				const element = station[index];
+				const peso = afluency[index];
+				sim_stations.push({station: element, afluency:peso});
+			}
+		}
+		else{
+			sim_stations.push({station: station, afluency: afluency});
+		}
+		console.log(sim_stations);
+		
+		for (const iterator of sim_stations) {
+			await AfluencyStation.update(
+				{"station": iterator.station},
+				{
+					station: iterator.station,
+					afluency: iterator.afluency
+				},
+				{ upsert: true }
+			)
+		}
+
+
+		res.redirect('/saveAfluency');
+
+	}
+
+	public async deleteAfluency(req:Request,res:Response){
+		await AfluencyStation.remove({});
+		res.redirect('/saveAfluency');
+	}
+
+	
 }
 
 async function applyKnn(
