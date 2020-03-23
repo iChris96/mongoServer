@@ -1,4 +1,4 @@
-<div class="row">
+<div class="col-md-6 offset-md-3">
     <div class="card shadow p-3 mb-5 bg-white rounded">
         <div class="card-body">
             <!-- Form -->
@@ -8,21 +8,18 @@
                 <div class="form-group">
                     <label for="initial_station">Estacion Inicial</label>
                     <select class="form-control" name="initial_station" id="initial_station">
-                        <optgroup label="___Azul___">
                             {{#each stopsList}}
                             <option value="{{properties.id}}">{{properties.name}}</option>
                             {{/each}}
-                        </optgroup>
                     </select>
                     <label for="final_station">Estacion Final</label>
                     <select class="form-control" name="final_station" id="final_station">
-                        <optgroup label="___Azul___">
                             {{#each stopsList}}
                             <option value="{{properties.id}}">{{properties.name}}</option>
                             {{/each}}
-                        </optgroup>
                     </select>
-                    <input class="form-control" type="datetime-local" name="date" id="date">
+                    <label for="">Fecha y Hora</label>
+                    <input class="form-control" type="datetime-local" name="date" id="date"required>
                 </div>
                 <!-- Buttom -->
                 <button type="submit" class="btn btn-success btn-block">Guardar</button>
