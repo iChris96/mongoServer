@@ -5,7 +5,17 @@ const router = Router();
 router.get(
     '/', 
     (req:Request, res:Response) => {
-        res.render('index');
+        if(req.session)
+        {
+            const user = req.session.username;
+
+            if(!user){
+                res.redirect('/auth/login');
+            }
+            else{
+                res.render('index',{user});
+            }
+        }
     })
     
 

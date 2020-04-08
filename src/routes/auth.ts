@@ -29,4 +29,17 @@ router.route('/me')
     ).get(
         authController.me
     )
+
+router.route('/login')
+.get(
+    authController.login
+)
+.post(
+    authController.auth
+)
+
+router.route('/logout')
+.get(
+    authController.logout
+)
 export default router;

@@ -12,19 +12,40 @@ class astarController {
 	}
 
 	public async simulatorPage(req: Request, res: Response){
-		const stopsList = await Stops.find().sort({"properties.name": 1});
-		res.render('astar/simulator', {
-			stopsList
-		});
+		if(req.session)
+        {
+            const user = req.session.username;
+            if(!user){
+                res.redirect('/auth/login');
+            }
+            else{
+				const stopsList = await Stops.find().sort({"properties.name": 1});
+				res.render('astar/simulator', {
+					stopsList, user
+				});
+            }
+        }
+
 	}
 	
 	public async afluencyPage(req: Request, res: Response){
-		const stopsList = await Stops.find().sort({"properties.name": 1});
-		const actualList = await AfluencyStation.find().sort({"station": 1});
-		res.render('astar/saveAfluency', {
-			stopsList,
-			actualList
-		});
+		if(req.session)
+        {
+            const user = req.session.username;
+            if(!user){
+                res.redirect('/auth/login');
+            }
+            else{
+				const stopsList = await Stops.find().sort({"properties.name": 1});
+				const actualList = await AfluencyStation.find().sort({"station": 1});
+				res.render('astar/saveAfluency', {
+					stopsList,
+					actualList,
+					user
+				});
+            }
+        }
+
 	}
 	public async algorithm(req: Request, res: Response) {
 		let date = new Date(req.body.date);

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import Config from '../config';
 const jwt = require('jsonwebtoken');
-
+var session = require('express-session');
 // Models
 import User, {IUser} from '../models/User';
 
@@ -121,16 +121,6 @@ class AuthController{
             })
         }
 
-        //validate provided password
-        const validPassword = await user.validateEncriptedsPassword(password); //true if password is valid
-        console.log(validPassword);
-        if(!validPassword){
-            return res.status(400).json({
-                auth: false,
-                message: 'Invalid email or password'
-            })
-        } 
-
         //create token
          const token:string = jwt.sign({id: user._id}, Config.secret, {
             expiresIn: 60 //* 60 * 24 //1 dia
@@ -159,7 +149,74 @@ class AuthController{
         })
      }
 
+     public login (req: Request, res: Response){
+        if(req.session)
+        {
+            const user = req.session.username;
+
+            if(user){
+                res.redirect('/');
+            }
+            else{
+                res.render('../views/login.hbs', {layout: 'out'});
+            }
+        }
+        
+     }
+
+    public async auth(req: Request, res: Response) {
+        var username = req.body.email;
+        var password = req.body.pass;
+        const user = await User.findOne({ email: username }) //find user by email
+        if (username && password) {
+            if (!user) {
+                return res.status(400).send(
+                    {
+                        //auth:false,
+                        code: 103,
+                        error: "Email or password wrong"
+                    }
+                )
+            }
+            else {
+                //validate provided password
+                const validPassword = await user.validatePassword(password); //true if password is valid
+                console.log(validPassword);
+                if (!validPassword) {
+                    return res.status(400).send(
+                        {
+                            code: 103,
+                            error: "Email or password wrong"
+                        }
+                    )
+                }
+                else {
+                    if (req.session) {
+                        req.session.loggedin = true;
+                        req.session.username = username;
+                        res.redirect('/');
+                    }
+
+                }
+            }
+        }
+    }
+    public logout (req: Request, res: Response){
+        if(req.session){
+            req.session.destroy(function(err){
+                if(err){
+                   console.log(err);
+                }else{
+                    console.log(session.username);
+                    res.redirect('/');
+                }
+             });
+        }
+    }
+
 }
+
+
 
 
 export const authController = new AuthController();

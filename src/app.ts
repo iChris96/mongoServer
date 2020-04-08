@@ -4,6 +4,7 @@ import expressHandlebars from 'express-handlebars';
 import path from 'path'; //path join folders routes independently be linux or windows path
 import multer from 'multer';
 import Config from './config';
+import session from 'express-session';
 
 //ROUTES
 import indexRoutes from './routes';
@@ -63,6 +64,11 @@ class Application {
 				dest: path.join(__dirname, 'public/uploads')
 			}).single('hola')
 		);
+		this.app.use(session({
+			secret: 'secret',
+			resave: true,
+			saveUninitialized: true
+		}));
 	}
 
 	routes() {
