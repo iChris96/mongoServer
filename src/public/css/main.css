@@ -6,14 +6,14 @@
 }
  .sidebar {
 	 position: fixed;
-	 width: 30vw;
+	 width: 35vw;
 	 height: 100vh;
 	 background: #680a0ae3;
 	 font-size: 0.65em;
 }
  .nav {
 	 position: relative;
-   margin-left: 10vw;
+   margin-left: 8vw;
    margin-right: 10px;
 	 text-align: right;
 	 top: 50%;
