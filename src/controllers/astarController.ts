@@ -109,9 +109,11 @@ class astarController {
 							mejor.properties.father = aux_mejor.father;
 							closed.push(mejor);
 							g += this.calc_distance(
-								initial.geometry.coordinates,
+								actual.geometry.coordinates,
 								mejor.geometry.coordinates
 							);
+							console.log({"g": g});
+							
 							actual = mejor;
 						}
 					}
