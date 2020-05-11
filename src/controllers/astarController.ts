@@ -112,8 +112,6 @@ class astarController {
 								actual.geometry.coordinates,
 								mejor.geometry.coordinates
 							);
-							console.log({"g": g});
-							
 							actual = mejor;
 						}
 					}
@@ -146,9 +144,13 @@ class astarController {
 										child.geometry.coordinates,
 										final.geometry.coordinates
 									);
+									let g_child = this.calc_distance(
+										actual.geometry.coordinates,
+										child.geometry.coordinates
+									);
 									opened.push({
 										station: iterator.id,
-										f: h + g + p_knn,
+										f: h + (g + g_child) + p_knn,
 										father: actual.properties.id
 									});
 								}
@@ -195,7 +197,7 @@ class astarController {
 						stops: estaciones.reverse()
 					});
 				} else {
-					res.send('pelas');
+					res.send('error');
 				}
 			}
 		} catch (error) {
