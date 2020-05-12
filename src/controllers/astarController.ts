@@ -276,7 +276,7 @@ class astarController {
 							mejor.properties.father = aux_mejor.father;
 							closed.push(mejor);
 							g += this.calc_distance(
-								initial.geometry.coordinates,
+								actual.geometry.coordinates,
 								mejor.geometry.coordinates
 							);
 							actual = mejor;
@@ -294,14 +294,13 @@ class astarController {
 									if(sim_stations.findIndex(i => i.station == iterator.id)!= -1){
 										let pos = sim_stations.findIndex(i => i.station == iterator.id);
 										p_knn = sim_stations[pos].afluency;
-										console.log(p_knn);
-										
 									}
 									else{
 										p_knn = 0;
 									}
+									let g_child = this.calc_distance(actual.geometry.coordinates,child.geometry.coordinates);
 									h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
-									opened.push({station: iterator.id,f:h + g+ p_knn,father: actual.properties.id});
+									opened.push({station: iterator.id,f:h + g + g_child+ p_knn,father: actual.properties.id});
 								}
 							}
 						}
