@@ -122,10 +122,7 @@ class astarController {
 						for (const iterator of actual.properties.childrens) {
 							let child = await Stops.findOne({ 'properties.id': iterator.id });
 							if (child != null) {
-								if (
-									closed.filter(close => close.properties.id == iterator.id)
-										.length == 0
-								) {
+								if (closed.filter(close => close.properties.id == iterator.id).length == 0 ) {
 									if (array_p.findIndex(i => i.station == iterator.id) == -1) {
 										p_knn = await applyKnn(
 											child.properties.csvName.toString(),
@@ -138,21 +135,9 @@ class astarController {
 										let pos = array_p.findIndex(i => i.station == iterator.id);
 										p_knn = array_p[pos].knn;
 									}
-									// console.log(p_knn);
-
-									h = this.calc_distance(
-										child.geometry.coordinates,
-										final.geometry.coordinates
-									);
-									let g_child = this.calc_distance(
-										actual.geometry.coordinates,
-										child.geometry.coordinates
-									);
-									opened.push({
-										station: iterator.id,
-										f: h + (g + g_child) + p_knn,
-										father: actual.properties.id
-									});
+									h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
+									let g_child = this.calc_distance(actual.geometry.coordinates,child.geometry.coordinates);
+									opened.push({station: iterator.id,f: h + (g + g_child) + p_knn,father: actual.properties.id});
 								}
 							}
 						}
