@@ -137,7 +137,22 @@ class astarController {
 									}
 									h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
 									let g_child = this.calc_distance(actual.geometry.coordinates,child.geometry.coordinates);
-									opened.push({station: iterator.id,f: h + (g + g_child) + p_knn,father: actual.properties.id});
+									let f_n = h + (g + g_child) + p_knn;
+									let band_update = false;
+									for (const open of opened) {
+										if(open.station == iterator.id){
+											if(open.f > f_n){
+												open.f = f_n;
+												open.father = actual.properties.id;
+												band_update = true;
+											}
+										}
+									}
+									if(!band_update)
+									{
+										opened.push({station: iterator.id,f: h + (g + g_child) + p_knn,father: actual.properties.id});
+									}
+									
 								}
 							}
 						}
@@ -285,7 +300,21 @@ class astarController {
 									}
 									let g_child = this.calc_distance(actual.geometry.coordinates,child.geometry.coordinates);
 									h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
-									opened.push({station: iterator.id,f:h + g + g_child+ p_knn,father: actual.properties.id});
+									let f_n = h + (g + g_child) + p_knn;
+									let band_update = false;
+									for (const open of opened) {
+										if(open.station == iterator.id){
+											if(open.f > f_n){
+												open.f = f_n;
+												open.father = actual.properties.id;
+												band_update = true;
+											}
+										}
+									}
+									if(!band_update)
+									{
+										opened.push({station: iterator.id,f: h + (g + g_child) + p_knn,father: actual.properties.id});
+									}
 								}
 							}
 						}
@@ -293,7 +322,6 @@ class astarController {
 				}
 				if (band) {
 					let father = actual;
-
 					let recorrido = [{}];
 					let estaciones = [
 						{

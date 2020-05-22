@@ -145,7 +145,7 @@ class CsvController {
 		} catch (err) {
 			console.error(err);
 		}
-		res.redirect('/create');
+		res.redirect('/csv/create');
 	}
 }
 
