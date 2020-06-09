@@ -81,13 +81,14 @@ class CsvController {
 			};
 			let file_data = fs.readFileSync(req.file.path, { encoding: 'utf8' });
 			let result = csvjson.toSchemaObject(file_data, options);
-			console.log(result); //Converted json object from csv data
+			console.log('result: ', result); //Converted json object from csv data
 
 			//! Transform data to knn format
 
 			// csv format -> station,date,entries,exit
 			// knn format -> station,entries,hour,minutes
 
+			//save new data into CleanEntries as CSV format & save new data into entriesKNN in KNN format
 			//await Entries.insertMany(result); //save data into Collection A (original - csv format)
 			await CleanEntries.insertMany(result); //save data into Collection A.clean (original clean - csv format)
 			await Csv.insertMany(result); //save data into Colleccion C (aux - csv format)
@@ -132,7 +133,9 @@ class CsvController {
 		} catch (err) {
 			console.error(err);
 		}
-		res.redirect('/create');
+		const redirect = '/csv/create';
+		console.log('redict to: ', redirect);
+		res.redirect(redirect);
 	}
 }
 

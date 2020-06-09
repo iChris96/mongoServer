@@ -5,3 +5,4 @@ thumbs.db
 node_modules/
 src/public/uploads
 src/config.ts
+/dist
