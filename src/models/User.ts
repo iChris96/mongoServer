@@ -5,14 +5,17 @@ import bcrypt from 'bcryptjs';
 export interface IUser extends Document {
   email: string;
   password: string;
+  rol: number;
   encryptPassword(password:string): Promise<string>;
   validatePassword(password:string): Promise<boolean>;
   validateEncriptedsPassword(password:string): boolean;
+
 }
 
 const UserSchema: Schema = new Schema({
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  rol: { type: Number }
 });
 
 UserSchema.methods.encryptPassword = async (password: string): Promise<string> => {

@@ -11,13 +11,24 @@ import EntriesKNN from '../models/EntriesKNN';
 
 class CsvController {
 	public createCsvGet(req: Request, res: Response) {
-		res.render('csv/create_csv');
+		if (req.session) {
+			const user = req.session.username;
+
+			if (!user) {
+				res.redirect('/auth/login');
+			} else {
+				res.render('csv/create_csv', {
+					user
+				});
+			}
+		}
 	}
 
 	public async resetRandomEntries(req: Request, res: Response) {
 		//Entries -> csv-format -> 1'000,000
 		//CsvEntries -> csv-format -> 31'000
 		//EntriesKNN -> knn-format -> 31'000
+
 		await CleanEntries.collection.drop();
 		await EntriesKNN.collection.drop();
 

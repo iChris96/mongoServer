@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import Config from '../config';
 const jwt = require('jsonwebtoken');
-
+var session = require('express-session');
 // Models
 import User, { IUser } from '../models/User';
 

@@ -12,19 +12,40 @@ class astarController {
 	}
 
 	public async simulatorPage(req: Request, res: Response){
-		const stopsList = await Stops.find().sort({"properties.name": 1});
-		res.render('astar/simulator', {
-			stopsList
-		});
+		if(req.session)
+        {
+            const user = req.session.username;
+            if(!user){
+                res.redirect('/auth/login');
+            }
+            else{
+				const stopsList = await Stops.find().sort({"properties.name": 1});
+				res.render('astar/simulator', {
+					stopsList, user
+				});
+            }
+        }
+
 	}
 	
 	public async afluencyPage(req: Request, res: Response){
-		const stopsList = await Stops.find().sort({"properties.name": 1});
-		const actualList = await AfluencyStation.find().sort({"station": 1});
-		res.render('astar/saveAfluency', {
-			stopsList,
-			actualList
-		});
+		if(req.session)
+        {
+            const user = req.session.username;
+            if(!user){
+                res.redirect('/auth/login');
+            }
+            else{
+				const stopsList = await Stops.find().sort({"properties.name": 1});
+				const actualList = await AfluencyStation.find().sort({"station": 1});
+				res.render('astar/saveAfluency', {
+					stopsList,
+					actualList,
+					user
+				});
+            }
+        }
+
 	}
 	public async algorithm(req: Request, res: Response) {
 		let date = new Date(req.body.date);
@@ -88,7 +109,7 @@ class astarController {
 							mejor.properties.father = aux_mejor.father;
 							closed.push(mejor);
 							g += this.calc_distance(
-								initial.geometry.coordinates,
+								actual.geometry.coordinates,
 								mejor.geometry.coordinates
 							);
 							actual = mejor;
@@ -101,10 +122,7 @@ class astarController {
 						for (const iterator of actual.properties.childrens) {
 							let child = await Stops.findOne({ 'properties.id': iterator.id });
 							if (child != null) {
-								if (
-									closed.filter(close => close.properties.id == iterator.id)
-										.length == 0
-								) {
+								if (closed.filter(close => close.properties.id == iterator.id).length == 0 ) {
 									if (array_p.findIndex(i => i.station == iterator.id) == -1) {
 										p_knn = await applyKnn(
 											child.properties.csvName.toString(),
@@ -117,17 +135,24 @@ class astarController {
 										let pos = array_p.findIndex(i => i.station == iterator.id);
 										p_knn = array_p[pos].knn;
 									}
-									// console.log(p_knn);
-
-									h = this.calc_distance(
-										child.geometry.coordinates,
-										final.geometry.coordinates
-									);
-									opened.push({
-										station: iterator.id,
-										f: h + g + p_knn,
-										father: actual.properties.id
-									});
+									h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
+									let g_child = this.calc_distance(actual.geometry.coordinates,child.geometry.coordinates);
+									let f_n = h + (g + g_child) + p_knn;
+									let band_update = false;
+									for (const open of opened) {
+										if(open.station == iterator.id){
+											if(open.f > f_n){
+												open.f = f_n;
+												open.father = actual.properties.id;
+												band_update = true;
+											}
+										}
+									}
+									if(!band_update)
+									{
+										opened.push({station: iterator.id,f: h + (g + g_child) + p_knn,father: actual.properties.id});
+									}
+									
 								}
 							}
 						}
@@ -172,7 +197,7 @@ class astarController {
 						stops: estaciones.reverse()
 					});
 				} else {
-					res.send('pelas');
+					res.send('error');
 				}
 			}
 		} catch (error) {
@@ -251,7 +276,7 @@ class astarController {
 							mejor.properties.father = aux_mejor.father;
 							closed.push(mejor);
 							g += this.calc_distance(
-								initial.geometry.coordinates,
+								actual.geometry.coordinates,
 								mejor.geometry.coordinates
 							);
 							actual = mejor;
@@ -269,14 +294,27 @@ class astarController {
 									if(sim_stations.findIndex(i => i.station == iterator.id)!= -1){
 										let pos = sim_stations.findIndex(i => i.station == iterator.id);
 										p_knn = sim_stations[pos].afluency;
-										console.log(p_knn);
-										
 									}
 									else{
 										p_knn = 0;
 									}
+									let g_child = this.calc_distance(actual.geometry.coordinates,child.geometry.coordinates);
 									h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
-									opened.push({station: iterator.id,f:h + g+ p_knn,father: actual.properties.id});
+									let f_n = h + (g + g_child) + p_knn;
+									let band_update = false;
+									for (const open of opened) {
+										if(open.station == iterator.id){
+											if(open.f > f_n){
+												open.f = f_n;
+												open.father = actual.properties.id;
+												band_update = true;
+											}
+										}
+									}
+									if(!band_update)
+									{
+										opened.push({station: iterator.id,f: h + (g + g_child) + p_knn,father: actual.properties.id});
+									}
 								}
 							}
 						}
@@ -284,7 +322,6 @@ class astarController {
 				}
 				if (band) {
 					let father = actual;
-
 					let recorrido = [{}];
 					let estaciones = [
 						{
