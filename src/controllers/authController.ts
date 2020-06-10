@@ -151,6 +151,100 @@ class AuthController {
 			user
 		});
 	}
+
+	public login(req: Request, res: Response) {
+		if (req.session) {
+			const user = req.session.username;
+
+			if (user) {
+				res.redirect('/');
+			} else {
+				res.render('../views/login.hbs', { layout: 'out' });
+			}
+		}
+	}
+
+	public async auth(req: Request, res: Response) {
+		var username = req.body.email;
+		var password = req.body.pass;
+		const user = await User.findOne({ email: username, rol: 1 }); //find user by email
+		if (username && password) {
+			if (!user) {
+				return res.status(400).send({
+					//auth:false,
+					code: 103,
+					error: 'Email or password wrong'
+				});
+			} else {
+				//validate provided password
+				const validPassword = await user.validatePassword(password); //true if password is valid
+				console.log(validPassword);
+				if (!validPassword) {
+					return res.status(400).send({
+						code: 103,
+						error: 'Email or password wrong'
+					});
+				} else {
+					if (req.session) {
+						req.session.loggedin = true;
+						req.session.username = username;
+						res.redirect('/');
+					}
+				}
+			}
+		}
+	}
+	public logout(req: Request, res: Response) {
+		if (req.session) {
+			req.session.destroy(function(err) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(session.username);
+					res.redirect('/');
+				}
+			});
+		}
+	}
+
+	public async register(req: Request, res: Response) {
+		try {
+			var username = req.body.email;
+			var password = req.body.pass;
+
+			//Check if user exist
+			const existUser = await User.findOne({ email: username }); //find user by email
+
+			if (existUser) {
+				console.log('existUser: ', existUser);
+				return res.status(400).json({
+					//auth:false,
+					code: 125,
+					error: 'This email is already used'
+				});
+			}
+
+			const user: IUser = new User({
+				email: username,
+				password: password,
+				rol: 1
+			});
+			user.password = await user.encryptPassword(user.password); //apply encrypt password to userSchema
+			console.log('Saving user to DB: ', user);
+			await user.save(); //save user to db
+
+			res.redirect('/auth/register');
+		} catch (error) {
+			console.log('-----Something was wrong------ \n', error);
+			//next(error)
+			res.status(500).send({ message: error.message });
+		}
+	}
+
+	public async registerPage(req: Request, res: Response) {
+		const users = await User.find({ rol: 1 });
+		res.render('../views/registerForm.hbs', { users });
+	}
 }
 
 export const authController = new AuthController();
