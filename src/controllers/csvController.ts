@@ -146,7 +146,9 @@ class CsvController {
 		}
 		const redirect = '/csv/create';
 		console.log('redict to: ', redirect);
-		res.redirect(redirect);
+		res.render('csv/create_csv', {
+			success: 1
+		});
 	}
 }
 

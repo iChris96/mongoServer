@@ -173,7 +173,7 @@ class AuthController {
 				return res.status(400).send({
 					//auth:false,
 					code: 103,
-					error: 'Email or password wrong'
+					error: 'Usuario no registrado'
 				});
 			} else {
 				//validate provided password
