@@ -52,24 +52,24 @@ class CsvController {
 					day: {
 						$dayOfMonth: {
 							$dateFromString: {
-								dateString: '$datetime'
-								//format: '%d/%m/%Y %H:%M'
+								dateString: '$datetime',
+								format: '%d/%m/%Y %H:%M'
 							}
 						}
 					},
 					hour: {
 						$hour: {
 							$dateFromString: {
-								dateString: '$datetime'
-								//format: '%d/%m/%Y %H:%M'
+								dateString: '$datetime',
+								format: '%d/%m/%Y %H:%M'
 							}
 						}
 					},
 					minutes: {
 						$minute: {
 							$dateFromString: {
-								dateString: '$datetime'
-								//format: '%d/%m/%Y %H:%M'
+								dateString: '$datetime',
+								format: '%d/%m/%Y %H:%M'
 							}
 						}
 					},
@@ -100,7 +100,8 @@ class CsvController {
 			// knn format -> station,entries,hour,minutes
 
 			//save new data into CleanEntries as CSV format & save new data into entriesKNN in KNN format
-			//await Entries.insertMany(result); //save data into Collection A (original - csv format)
+			const entriesCount = await Entries.countDocuments();
+			if (entriesCount === 0) await Entries.insertMany(result); //save data into Collection A (original - csv format)
 			await CleanEntries.insertMany(result); //save data into Collection A.clean (original clean - csv format)
 			await Csv.insertMany(result); //save data into Colleccion C (aux - csv format)
 

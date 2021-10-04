@@ -1,0 +1,2642 @@
+[
+  {
+    "geometry": {
+      "coordinates": [-71.099787, 42.322893],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "boston",
+      "id": "jackson-square",
+      "name": "Jackson Square",
+      "csvName": "Jackson Square",
+      "childrens": [
+        {
+          "id": "stony-brook",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.099787, 42.322893], [-71.104021, 42.317251]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "roxbury-crossing",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.095555, 42.331388], [-71.099787, 42.322893]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f509021592",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.057421, 42.359065],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange", "blue"],
+      "area": "boston",
+      "id": "state-street",
+      "name": "State Street",
+      "csvName": "State Street",
+      "childrens": [
+        {
+          "id": "downtown-crossing",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.057421, 42.359065], [-71.060465, 42.355453]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "haymarket",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.057922, 42.363222], [-71.057421, 42.359065]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "government-center",
+          "destination": "bowdoin",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.057421, 42.359065], [-71.059195, 42.359868]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        },
+        {
+          "id": "aquarium",
+          "destination": "wonderland",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.051807, 42.359634], [-71.057421, 42.359065]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f509021594",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.075724, 42.347314],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "boston",
+      "id": "back-bay",
+      "name": "Back Bay",
+      "csvName": "Back Bay",
+      "childrens": [
+        {
+          "id": "massachusetts-ave",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.075724, 42.347314], [-71.083072, 42.341762]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "tufts-medical-center",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.063877, 42.349504], [-71.075724, 42.347314]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f509021599",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.07052, 42.372593],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "boston",
+      "id": "community-college",
+      "name": "Community College",
+      "csvName": "Community College",
+      "childrens": [
+        {
+          "id": "north-station",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.07052, 42.372593], [-71.061251, 42.365551]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "sullivan-square",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.077056, 42.383434], [-71.07052, 42.372593]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215a4",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.057922, 42.363222],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["green-e", "green-d", "green", "green-c", "orange"],
+      "area": "boston",
+      "id": "haymarket",
+      "name": "Haymarket",
+      "csvName": "Haymarket",
+      "childrens": [
+        {
+          "id": "state-street",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.057922, 42.363222], [-71.057421, 42.359065]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "north-station",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.061251, 42.365551], [-71.057922, 42.363222]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "government-center",
+          "destination": "haymarket",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.057922, 42.363222], [-71.059195, 42.359868]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["E", "W"],
+              "id": "green",
+              "name": "Green Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215a7",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.113377, 42.300023],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "jamaica-plain",
+      "id": "forest-hills",
+      "name": "Forest Hills",
+      "csvName": "Forest Hills",
+      "childrens": [
+        {
+          "id": "green-street",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.107125, 42.310359], [-71.113377, 42.300023]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215ab",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.090437, 42.335742],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "boston",
+      "id": "ruggles",
+      "name": "Ruggles",
+      "csvName": "Ruggles",
+      "childrens": [
+        {
+          "id": "roxbury-crossing",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.090437, 42.335742], [-71.095555, 42.331388]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "massachusetts-ave",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.083072, 42.341762], [-71.090437, 42.335742]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215b0",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.077056, 42.383434],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "charlestown",
+      "id": "sullivan-square",
+      "name": "Sullivan Square",
+      "csvName": "Sullivan Square",
+      "childrens": [
+        {
+          "id": "community-college",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.077056, 42.383434], [-71.07052, 42.372593]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "wellington",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.076969, 42.405202], [-71.077056, 42.383434]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215b8",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.060465, 42.355453],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange", "red"],
+      "area": "boston",
+      "id": "downtown-crossing",
+      "name": "Downtown Crossing",
+      "csvName": "Downtown Crossing",
+      "childrens": [
+        {
+          "id": "chinatown",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.060465, 42.355453], [-71.062759, 42.352529]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "state-street",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.057421, 42.359065], [-71.060465, 42.355453]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "south-station",
+          "destination": "jfkumass",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.060465, 42.355453], [-71.055428, 42.352573]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "park-st",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.062202, 42.356332], [-71.060465, 42.355453]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215c0",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.070888, 42.437134],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "malden",
+      "id": "oak-grove",
+      "name": "Oak Grove",
+      "csvName": "Oak Grove",
+      "childrens": [
+        {
+          "id": "malden",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.070888, 42.437134], [-71.074144, 42.426678]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215c5",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.074144, 42.426678],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "malden",
+      "id": "malden",
+      "name": "Malden",
+      "csvName": "Malden Center",
+      "childrens": [
+        {
+          "id": "wellington",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.074144, 42.426678], [-71.076969, 42.405202]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "oak-grove",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.070888, 42.437134], [-71.074144, 42.426678]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215d6",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.107125, 42.310359],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "boston",
+      "id": "green-street",
+      "name": "Green Street",
+      "csvName": "Green Street",
+      "childrens": [
+        {
+          "id": "forest-hills",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.107125, 42.310359], [-71.113377, 42.300023]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "stony-brook",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.104021, 42.317251], [-71.107125, 42.310359]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215d9",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.083072, 42.341762],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "boston",
+      "id": "massachusetts-ave",
+      "name": "Massachusetts Ave.",
+      "csvName": "Mass Ave",
+      "childrens": [
+        {
+          "id": "ruggles",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.083072, 42.341762], [-71.090437, 42.335742]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "back-bay",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.075724, 42.347314], [-71.083072, 42.341762]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215e4",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.061251, 42.365551],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "boston",
+      "id": "north-station",
+      "name": "North Station",
+      "csvName": "North Station",
+      "childrens": [
+        {
+          "id": "haymarket",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.061251, 42.365551], [-71.057922, 42.363222]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "community-college",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.07052, 42.372593], [-71.061251, 42.365551]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215e5",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.062759, 42.352529],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange", "sl4", "silver", "sl5"],
+      "area": "boston",
+      "id": "chinatown",
+      "name": "Chinatown",
+      "csvName": "Chinatown",
+      "childrens": [
+        {
+          "id": "tufts-medical-center",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.062759, 42.352529], [-71.063877, 42.349504]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "downtown-crossing",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.060465, 42.355453], [-71.062759, 42.352529]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215fc",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.063877, 42.349504],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange", "sl4", "silver", "sl5"],
+      "area": "boston",
+      "id": "tufts-medical-center",
+      "name": "Tufts Medical Center",
+      "csvName": "Tufts Medical Center",
+      "childrens": [
+        {
+          "id": "back-bay",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.063877, 42.349504], [-71.075724, 42.347314]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "chinatown",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.062759, 42.352529], [-71.063877, 42.349504]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f509021600",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.104021, 42.317251],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "boston",
+      "id": "stony-brook",
+      "name": "Stony Brook",
+      "csvName": "Stony Brook",
+      "childrens": [
+        {
+          "id": "green-street",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.104021, 42.317251], [-71.107125, 42.310359]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "jackson-square",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.099787, 42.322893], [-71.104021, 42.317251]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f50902160a",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.095555, 42.331388],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "boston",
+      "id": "roxbury-crossing",
+      "name": "Roxbury Crossing",
+      "csvName": "Roxbury Crossing",
+      "childrens": [
+        {
+          "id": "jackson-square",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.095555, 42.331388], [-71.099787, 42.322893]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "ruggles",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.090437, 42.335742], [-71.095555, 42.331388]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f509021611",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.076969, 42.405202],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["orange"],
+      "area": "malden",
+      "id": "wellington",
+      "name": "Wellington",
+      "csvName": "Wellington",
+      "childrens": [
+        {
+          "id": "sullivan-square",
+          "destination": "forest-hills",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.076969, 42.405202], [-71.077056, 42.383434]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        },
+        {
+          "id": "malden",
+          "destination": "oak-grove",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.074144, 42.426678], [-71.076969, 42.405202]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "orange",
+              "name": "Orange Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f509021616",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.070493, 42.361279],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "boston",
+      "id": "charlesmgh",
+      "name": "Charles/MGH",
+      "csvName": "Charles MGH",
+      "childrens": [
+        {
+          "id": "park-st",
+          "destination": "jfkumass",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.070493, 42.361279], [-71.062202, 42.356332]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "kendallmit",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.086058, 42.362427], [-71.070493, 42.361279]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f50902158b",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.057117, 42.342793],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "boston",
+      "id": "broadway",
+      "name": "Broadway",
+      "csvName": "Broadway",
+      "childrens": [
+        {
+          "id": "andrew",
+          "destination": "jfkumass",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.057117, 42.342793], [-71.056979, 42.329752]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "south-station",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.055428, 42.352573], [-71.057117, 42.342793]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f50902158e",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.007034, 42.232848],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "quincy",
+      "id": "quincy-adams",
+      "name": "Quincy Adams",
+      "csvName": "Quincy Adams",
+      "childrens": [
+        {
+          "id": "braintree",
+          "destination": "braintree",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.007034, 42.232848], [-71.00085, 42.20855]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "quincy-center",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.004798, 42.250879], [-71.007034, 42.232848]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f50902158f",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.063229, 42.284219],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "boston",
+      "id": "ashmont",
+      "name": "Ashmont",
+      "csvName": "Ashmont",
+      "childrens": [
+        {
+          "id": "shawmut",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [-71.06591373682022, 42.29371497963336],
+                [-71.063229, 42.284219]
+              ]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f509021597",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.142449, 42.395261],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "cambridge",
+      "id": "alewife",
+      "name": "Alewife",
+      "csvName": "Alewife",
+      "childrens": [
+        {
+          "id": "davis",
+          "destination": "jfkumass",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.142449, 42.395261], [-71.122527, 42.39662]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f50902159d",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.029307, 42.274957],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "quincy",
+      "id": "north-quincy",
+      "name": "North Quincy",
+      "csvName": "North Quincy",
+      "childrens": [
+        {
+          "id": "wollaston",
+          "destination": "braintree",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.029307, 42.274957], [-71.019721, 42.265972]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "jfkumass",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.052545, 42.321065], [-71.029307, 42.274957]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215a2",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.053175, 42.311099],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "boston",
+      "id": "savin-hill",
+      "name": "Savin Hill",
+      "csvName": "Savin Hill",
+      "childrens": [
+        {
+          "id": "fields-corner",
+          "destination": "ashmont",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [-71.05328321456909, 42.31121180948307],
+                [-71.05424880981445, 42.30816509216989],
+                [-71.05476379394531, 42.30664167821305],
+                [-71.05506420135498, 42.3053086607587],
+                [-71.05557918548584, 42.303467780728276],
+                [-71.05596542358397, 42.30156336543269],
+                [-71.0572099685669, 42.30042068860586],
+                [-71.0601282119751, 42.30029372323394],
+                [-71.06151223182678, 42.30000408252102]
+              ]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "jfkumass",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [-71.05254560709, 42.32106502595351],
+                [-71.0521674156189, 42.31979577706749],
+                [-71.0519528388977, 42.319192874877594],
+                [-71.05182409286499, 42.31892315360665],
+                [-71.05165243148804, 42.3184471720729],
+                [-71.05145931243896, 42.31787598947991],
+                [-71.05137348175049, 42.31709853817519],
+                [-71.05130910873413, 42.316352810551855],
+                [-71.05128765106201, 42.31563880773803],
+                [-71.05145931243896, 42.314655057258555],
+                [-71.05182409286499, 42.313290474683434],
+                [-71.05244636535645, 42.312481231506595],
+                [-71.05266094207762, 42.312211481468786],
+                [-71.05328321456909, 42.31121180948307]
+              ]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215b1",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.00085, 42.20855],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "braintree",
+      "id": "braintree",
+      "name": "Braintree",
+      "csvName": "Braintree",
+      "childrens": [
+        {
+          "id": "quincy-adams",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.007034, 42.232848], [-71.00085, 42.20855]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215b3",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.065912, 42.293712],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "boston",
+      "id": "shawmut",
+      "name": "Shawmut",
+      "csvName": "Shawmut",
+      "childrens": [
+        {
+          "id": "ashmont",
+          "destination": "ashmont",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [-71.06591373682022, 42.29371497963336],
+                [-71.063229, 42.284219]
+              ]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "fields-corner",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [-71.06151223182678, 42.30000408252102],
+                [-71.06247782707214, 42.29977792377783],
+                [-71.06390476226807, 42.29935734570952],
+                [-71.06542825698853, 42.29834159841291],
+                [-71.0659646987915, 42.297484548886864],
+                [-71.06605052947998, 42.29551646508872],
+                [-71.06591373682022, 42.29371497963336]
+              ]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215c2",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.118917, 42.373936],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "cambridge",
+      "id": "harvard",
+      "name": "Harvard",
+      "csvName": "Harvard",
+      "childrens": [
+        {
+          "id": "central-square",
+          "destination": "jfkumass",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.118917, 42.373936], [-71.103474, 42.365326]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "porter-square",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.119159, 42.388353], [-71.118917, 42.373936]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215ca",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.122527, 42.39662],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "somerville",
+      "id": "davis",
+      "name": "Davis",
+      "csvName": "Davis Square",
+      "childrens": [
+        {
+          "id": "porter-square",
+          "destination": "jfkumass",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.122527, 42.39662], [-71.119159, 42.388353]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "alewife",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.142449, 42.395261], [-71.122527, 42.39662]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215d7",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.052545, 42.321065],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "boston",
+      "id": "jfkumass",
+      "name": "JFK/UMass",
+      "csvName": "JFK/U Mass",
+      "childrens": [
+        {
+          "id": "savin-hill",
+          "destination": "ashmont",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [-71.05254560709, 42.32106502595351],
+                [-71.0521674156189, 42.31979577706749],
+                [-71.0519528388977, 42.319192874877594],
+                [-71.05182409286499, 42.31892315360665],
+                [-71.05165243148804, 42.3184471720729],
+                [-71.05145931243896, 42.31787598947991],
+                [-71.05137348175049, 42.31709853817519],
+                [-71.05130910873413, 42.316352810551855],
+                [-71.05128765106201, 42.31563880773803],
+                [-71.05145931243896, 42.314655057258555],
+                [-71.05182409286499, 42.313290474683434],
+                [-71.05244636535645, 42.312481231506595],
+                [-71.05266094207762, 42.312211481468786],
+                [-71.05328321456909, 42.31121180948307]
+              ]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "north-quincy",
+          "destination": "braintree",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.052545, 42.321065], [-71.029307, 42.274957]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "andrew",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.056979, 42.329752], [-71.052545, 42.321065]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215d8",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.019721, 42.265972],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "quincy",
+      "id": "wollaston",
+      "name": "Wollaston",
+      "csvName": "Wollaston",
+      "childrens": [
+        {
+          "id": "quincy-center",
+          "destination": "braintree",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.019721, 42.265972], [-71.004798, 42.250879]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "north-quincy",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.029307, 42.274957], [-71.019721, 42.265972]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215da",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.004798, 42.250879],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "quincy",
+      "id": "quincy-center",
+      "name": "Quincy Center",
+      "csvName": "Quincy Center",
+      "childrens": [
+        {
+          "id": "quincy-adams",
+          "destination": "braintree",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.004798, 42.250879], [-71.007034, 42.232848]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "wollaston",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.019721, 42.265972], [-71.004798, 42.250879]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215e6",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.062202, 42.356332],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["green", "green-c", "green-e", "green-d", "red", "green-b"],
+      "area": "boston",
+      "id": "park-st",
+      "name": "Park St",
+      "csvName": "Park Street",
+      "childrens": [
+        {
+          "id": "downtown-crossing",
+          "destination": "jfkumass",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.062202, 42.356332], [-71.060465, 42.355453]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "charlesmgh",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.070493, 42.361279], [-71.062202, 42.356332]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "boylston",
+          "destination": "boylston",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.062202, 42.356332], [-71.06461, 42.352337]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["E", "W"],
+              "id": "green",
+              "name": "Green Line"
+            }
+          }
+        },
+        {
+          "id": "government-center",
+          "destination": "haymarket",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.059195, 42.359868], [-71.062202, 42.356332]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["E", "W"],
+              "id": "green",
+              "name": "Green Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215eb",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.056979, 42.329752],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "boston",
+      "id": "andrew",
+      "name": "Andrew",
+      "csvName": "Andrew Square",
+      "childrens": [
+        {
+          "id": "jfkumass",
+          "destination": "jfkumass",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.056979, 42.329752], [-71.052545, 42.321065]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "broadway",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.057117, 42.342793], [-71.056979, 42.329752]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215f3",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.119159, 42.388353],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "cambridge",
+      "id": "porter-square",
+      "name": "Porter Square",
+      "csvName": "Porter Square",
+      "childrens": [
+        {
+          "id": "harvard",
+          "destination": "jfkumass",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.119159, 42.388353], [-71.118917, 42.373936]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "davis",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.122527, 42.39662], [-71.119159, 42.388353]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f5090215fe",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.086058, 42.362427],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "cambridge",
+      "id": "kendallmit",
+      "name": "Kendall/MIT",
+      "csvName": "Kendall Square",
+      "childrens": [
+        {
+          "id": "charlesmgh",
+          "destination": "jfkumass",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.086058, 42.362427], [-71.070493, 42.361279]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "central-square",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.103474, 42.365326], [-71.086058, 42.362427]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f509021602",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.061516, 42.299992],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "boston",
+      "id": "fields-corner",
+      "name": "Fields Corner",
+      "csvName": "Fields Corner",
+      "childrens": [
+        {
+          "id": "shawmut",
+          "destination": "ashmont",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [-71.06151223182678, 42.30000408252102],
+                [-71.06247782707214, 42.29977792377783],
+                [-71.06390476226807, 42.29935734570952],
+                [-71.06542825698853, 42.29834159841291],
+                [-71.0659646987915, 42.297484548886864],
+                [-71.06605052947998, 42.29551646508872],
+                [-71.06591373682022, 42.29371497963336]
+              ]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "savin-hill",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [-71.05328321456909, 42.31121180948307],
+                [-71.05424880981445, 42.30816509216989],
+                [-71.05476379394531, 42.30664167821305],
+                [-71.05506420135498, 42.3053086607587],
+                [-71.05557918548584, 42.303467780728276],
+                [-71.05596542358397, 42.30156336543269],
+                [-71.0572099685669, 42.30042068860586],
+                [-71.0601282119751, 42.30029372323394],
+                [-71.06151223182678, 42.30000408252102]
+              ]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f509021608",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.055428, 42.352573],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["sl4", "sl2", "silver", "red", "sl1"],
+      "area": "boston",
+      "id": "south-station",
+      "name": "South Station",
+      "csvName": "South Station",
+      "childrens": [
+        {
+          "id": "broadway",
+          "destination": "jfkumass",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.055428, 42.352573], [-71.057117, 42.342793]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "downtown-crossing",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.060465, 42.355453], [-71.055428, 42.352573]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f50902160b",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "coordinates": [-71.103474, 42.365326],
+      "type": "Point"
+    },
+    "properties": {
+      "lines": ["red"],
+      "area": "cambridge",
+      "id": "central-square",
+      "name": "Central Square",
+      "csvName": "Central Square",
+      "childrens": [
+        {
+          "id": "kendallmit",
+          "destination": "jfkumass",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.103474, 42.365326], [-71.086058, 42.362427]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        },
+        {
+          "id": "harvard",
+          "destination": "alewife",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.118917, 42.373936], [-71.103474, 42.365326]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "red",
+              "name": "Red Line"
+            }
+          }
+        }
+      ]
+    },
+    "_id": "5e2531cd566b39f509021615",
+    "type": "Feature"
+  },
+  {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-70.990986, 42.413963]
+    },
+    "type": "Feature",
+    "properties": {
+      "area": "boston",
+      "lines": ["blue"],
+      "id": "wonderland",
+      "name": "Wonderland",
+      "csvName": "Wonderland",
+      "childrens": [
+        {
+          "id": "revere-beach",
+          "destination": "bowdoin",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-70.990986, 42.413963], [-70.99256, 42.408389]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-70.99256, 42.408389]
+    },
+    "type": "Feature",
+    "properties": {
+      "area": "revere",
+      "lines": ["blue"],
+      "id": "revere-beach",
+      "name": "Revere Beach",
+      "csvName": "Revere Beach",
+      "childrens": [
+        {
+          "id": "beachmont",
+          "destination": "bowdoin",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-70.99256, 42.408389], [-70.992363, 42.39745]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        },
+        {
+          "id": "wonderland",
+          "destination": "wonderland",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-70.990986, 42.413963], [-70.99256, 42.408389]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-70.992363, 42.39745]
+    },
+    "type": "Feature",
+    "properties": {
+      "area": "revere",
+      "lines": ["blue"],
+      "id": "beachmont",
+      "name": "Beachmont",
+      "csvName": "Beachmont",
+      "childrens": [
+        {
+          "id": "suffolk-downs",
+          "destination": "bowdoin",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-70.992363, 42.39745], [-70.997678, 42.390232]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        },
+        {
+          "id": "revere-beach",
+          "destination": "wonderland",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-70.99256, 42.408389], [-70.992363, 42.39745]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-70.997678, 42.390232]
+    },
+    "type": "Feature",
+    "properties": {
+      "area": "boston",
+      "lines": ["blue"],
+      "id": "suffolk-downs",
+      "name": "Suffolk Downs",
+      "csvName": "Suffolk Downs",
+      "childrens": [
+        {
+          "id": "orient-heights",
+          "destination": "bowdoin",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-70.997678, 42.390232], [-71.004941, 42.386769]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        },
+        {
+          "id": "beachmont",
+          "destination": "wonderland",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-70.992363, 42.39745], [-70.997678, 42.390232]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-71.004941, 42.386769]
+    },
+    "type": "Feature",
+    "properties": {
+      "area": "boston",
+      "lines": ["blue"],
+      "id": "orient-heights",
+      "name": "Orient Heights",
+      "csvName": "Orient Heights",
+      "childrens": [
+        {
+          "id": "wood-island",
+          "destination": "bowdoin",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.004941, 42.386769], [-71.022476, 42.379759]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        },
+        {
+          "id": "suffolk-downs",
+          "destination": "wonderland",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-70.997678, 42.390232], [-71.004941, 42.386769]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-71.022476, 42.379759]
+    },
+    "type": "Feature",
+    "properties": {
+      "area": "boston",
+      "lines": ["blue"],
+      "id": "wood-island",
+      "name": "Wood Island",
+      "csvName": "Wood Island",
+      "childrens": [
+        {
+          "id": "airport",
+          "destination": "bowdoin",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.022476, 42.379759], [-71.029485, 42.374542]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        },
+        {
+          "id": "orient-heights",
+          "destination": "wonderland",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.004941, 42.386769], [-71.022476, 42.379759]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-71.029485, 42.374542]
+    },
+    "type": "Feature",
+    "properties": {
+      "area": "boston",
+      "lines": ["blue"],
+      "id": "airport",
+      "name": "Airport",
+      "csvName": "Airport",
+      "childrens": [
+        {
+          "id": "wood-island",
+          "destination": "wonderland",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.022476, 42.379759], [-71.029485, 42.374542]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        },
+        {
+          "id": "maverick",
+          "destination": "bowdoin",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.029485, 42.374542], [-71.038422, 42.368343]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-71.038422, 42.368343]
+    },
+    "type": "Feature",
+    "properties": {
+      "area": "boston",
+      "lines": ["blue"],
+      "id": "maverick",
+      "name": "Maverick",
+      "csvName": "Maverick",
+      "childrens": [
+        {
+          "id": "airport",
+          "destination": "wonderland",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.029485, 42.374542], [-71.038422, 42.368343]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        },
+        {
+          "id": "aquarium",
+          "destination": "bowdoin",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.038422, 42.368343], [-71.051807, 42.359634]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-71.051807, 42.359634]
+    },
+    "type": "Feature",
+    "properties": {
+      "area": "boston",
+      "lines": ["blue"],
+      "id": "aquarium",
+      "name": "Aquarium",
+      "csvName": "Aquarium",
+      "childrens": [
+        {
+          "id": "maverick",
+          "destination": "wonderland",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.038422, 42.368343], [-71.051807, 42.359634]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        },
+        {
+          "id": "state-street",
+          "destination": "bowdoin",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.051807, 42.359634], [-71.057421, 42.359065]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-71.059195, 42.359868]
+    },
+    "type": "Feature",
+    "properties": {
+      "area": "boston",
+      "lines": ["blue", "green"],
+      "id": "government-center",
+      "name": "Government Center",
+      "csvName": "Government Center",
+      "childrens": [
+        {
+          "id": "state-street",
+          "destination": "wonderland",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.057421, 42.359065], [-71.059195, 42.359868]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        },
+        {
+          "id": "bowdoin",
+          "destination": "bowdoin",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.059195, 42.359868], [-71.062129, 42.361457]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        },
+        {
+          "id": "park-st",
+          "destination": "boylston",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.059195, 42.359868], [-71.062202, 42.356332]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["E", "W"],
+              "id": "green",
+              "name": "Green Line"
+            }
+          }
+        },
+        {
+          "id": "haymarket",
+          "destination": "haymarket",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.057922, 42.363222], [-71.059195, 42.359868]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["E", "W"],
+              "id": "green",
+              "name": "Green Line"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-71.062129, 42.361457]
+    },
+    "type": "Feature",
+    "properties": {
+      "area": "boston",
+      "lines": ["blue"],
+      "id": "bowdoin",
+      "name": "Bowdoin",
+      "csvName": "Bowdoin",
+      "childrens": [
+        {
+          "id": "government-center",
+          "destination": "wonderland",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.059195, 42.359868], [-71.062129, 42.361457]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["N", "S"],
+              "id": "blue",
+              "name": "Blue Line"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-71.06461, 42.352337]
+    },
+    "type": "Feature",
+    "properties": {
+      "area": "boston",
+      "lines": ["green"],
+      "id": "boylston",
+      "name": "Boylston",
+      "csvName": "Boylston",
+      "childrens": [
+        {
+          "id": "park-st",
+          "destination": "haymarket",
+          "geojson": {
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [[-71.062202, 42.356332], [-71.06461, 42.352337]]
+            },
+            "type": "Feature",
+            "properties": {
+              "directions": ["E", "W"],
+              "id": "green",
+              "name": "Green Line"
+            }
+          }
+        }
+      ]
+    }
+  }
+]

@@ -116,12 +116,12 @@ class KNN {
 
 			if (!isNaN(distance) && !isNaN(goal)) {
 				actualPoints.push([distance, goal]);
-				console.log('Distance: ', distance, 'Goal: ', goal);
+				// console.log('Distance: ', distance, 'Goal: ', goal);
 			} else {
 				throw new Error('Format diferent of number: ' + distance + ', ' + goal);
 			}
 		}
-		console.log('ActualPoints', actualPoints);
+		console.log('ActualPoints', actualPoints); // this retuns an array of arrays as [[distance, goal], [distance, goal],....]
 		console.log('Frequency', frequency);
 		console.log('Frequencies', frequencies);
 
@@ -138,22 +138,38 @@ class KNN {
 			.slice(0, this.k);
 
 		console.log('2.ActualPoints', actualPoints); //array of best K
+		/* 
+          for (let actualPoint of actualPoints) {
+              console.log('frequencies', frequencies);
+  
+              frequencies[actualPoint[1]] = frequencies[actualPoint[1]]
+                  ? frequencies[actualPoint[1]] + 1
+                  : 1;
+  
+              console.log('frequencies[actualPoint[1]]', frequencies[actualPoint[1]]);
+              console.log('frequencies[frequency]', frequencies[frequency]);
+              if (
+                  !frequencies[frequency] ||
+                  frequencies[actualPoint[1]] > frequencies[frequency]
+              ) {
+                  console.log('frq ', frequency, ' acp[1]', actualPoint[1]);
+  
+                  frequency = actualPoint[1];
+              }
+          } */
 
+		let sum = 0;
 		for (let actualPoint of actualPoints) {
-			frequencies[actualPoint[1]] = frequencies[actualPoint[1]]
-				? frequencies[actualPoint[1]] + 1
-				: 1;
-			if (
-				!frequencies[frequency] ||
-				frequencies[actualPoint[1]] > frequencies[frequency]
-			) {
-				frequency = actualPoint[1];
-			}
+			//actualpoints as bests K's
+			sum += actualPoint[1]; // actualPoint = [distance between our instance to clasify and some feature, goal value]
 		}
 
-		console.log('finalFrequency', frequency);
+		console.log({ actualPoints });
+		sum = sum / this.k;
 
-		return frequency;
+		console.log('finalFrequency', sum);
+
+		return sum;
 	}
 	training(outputs, testSize, shuffleTimes, ktimes, normalize) {
 		if (outputs.length < testSize) {
