@@ -5,47 +5,42 @@ import { knnController } from './knnController';
 
 class astarController {
 	public async getPage(req: Request, res: Response) {
-		const stopsList = await Stops.find().sort({"properties.name": 1});
+		const stopsList = await Stops.find().sort({ 'properties.name': 1 });
 		res.render('astar/index', {
 			stopsList
 		});
 	}
 
-	public async simulatorPage(req: Request, res: Response){
-		if(req.session)
-        {
-            const user = req.session.username;
-            if(!user){
-                res.redirect('/auth/login');
-            }
-            else{
-				const stopsList = await Stops.find().sort({"properties.name": 1});
+	public async simulatorPage(req: Request, res: Response) {
+		if (req.session) {
+			const user = req.session.username;
+			if (!user) {
+				res.redirect('/auth/login');
+			} else {
+				const stopsList = await Stops.find().sort({ 'properties.name': 1 });
 				res.render('astar/simulator', {
-					stopsList, user
+					stopsList,
+					user
 				});
-            }
-        }
-
+			}
+		}
 	}
-	
-	public async afluencyPage(req: Request, res: Response){
-		if(req.session)
-        {
-            const user = req.session.username;
-            if(!user){
-                res.redirect('/auth/login');
-            }
-            else{
-				const stopsList = await Stops.find().sort({"properties.name": 1});
-				const actualList = await AfluencyStation.find().sort({"station": 1});
+
+	public async afluencyPage(req: Request, res: Response) {
+		if (req.session) {
+			const user = req.session.username;
+			if (!user) {
+				res.redirect('/auth/login');
+			} else {
+				const stopsList = await Stops.find().sort({ 'properties.name': 1 });
+				const actualList = await AfluencyStation.find().sort({ station: 1 });
 				res.render('astar/saveAfluency', {
 					stopsList,
 					actualList,
 					user
 				});
-            }
-        }
-
+			}
+		}
 	}
 	public async algorithm(req: Request, res: Response) {
 		let date = new Date(req.body.date);
@@ -97,7 +92,7 @@ class astarController {
 				let consult = 0;
 				let closed = [];
 				while (opened.length > 0) {
-					opened.sort(function(a, b) {
+					opened.sort(function (a, b) {
 						return a.f - b.f;
 					});
 					let aux_mejor = opened.shift();
@@ -122,7 +117,10 @@ class astarController {
 						for (const iterator of actual.properties.childrens) {
 							let child = await Stops.findOne({ 'properties.id': iterator.id });
 							if (child != null) {
-								if (closed.filter(close => close.properties.id == iterator.id).length == 0 ) {
+								if (
+									closed.filter(close => close.properties.id == iterator.id)
+										.length == 0
+								) {
 									if (array_p.findIndex(i => i.station == iterator.id) == -1) {
 										p_knn = await applyKnn(
 											child.properties.csvName.toString(),
@@ -135,24 +133,32 @@ class astarController {
 										let pos = array_p.findIndex(i => i.station == iterator.id);
 										p_knn = array_p[pos].knn;
 									}
-									h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
-									let g_child = this.calc_distance(actual.geometry.coordinates,child.geometry.coordinates);
+									h = this.calc_distance(
+										child.geometry.coordinates,
+										final.geometry.coordinates
+									);
+									let g_child = this.calc_distance(
+										actual.geometry.coordinates,
+										child.geometry.coordinates
+									);
 									let f_n = h + (g + g_child) + p_knn;
 									let band_update = false;
 									for (const open of opened) {
-										if(open.station == iterator.id){
-											if(open.f > f_n){
+										if (open.station == iterator.id) {
+											if (open.f > f_n) {
 												open.f = f_n;
 												open.father = actual.properties.id;
 												band_update = true;
 											}
 										}
 									}
-									if(!band_update)
-									{
-										opened.push({station: iterator.id,f: h + (g + g_child) + p_knn,father: actual.properties.id});
+									if (!band_update) {
+										opened.push({
+											station: iterator.id,
+											f: h + (g + g_child) + p_knn,
+											father: actual.properties.id
+										});
 									}
-									
 								}
 							}
 						}
@@ -218,7 +224,7 @@ class astarController {
 		}
 		return to_return;
 	}
-	public rad = function(x: number) {
+	public rad = function (x: number) {
 		return (x * Math.PI) / 180;
 	};
 	public calc_distance(initial: Array<any>, final: Array<any>) {
@@ -241,7 +247,7 @@ class astarController {
 		return d; //Retorna tres decimales
 	}
 	public async simulator(req: Request, res: Response) {
-		 let sim_stations = await AfluencyStation.find() ;
+		let sim_stations = await AfluencyStation.find();
 
 		let h = 0;
 		let g = 0;
@@ -257,10 +263,11 @@ class astarController {
 				let opened = [
 					{
 						station: actual.properties.id,
-						f: this.calc_distance(
-							actual.geometry.coordinates,
-							final.geometry.coordinates
-						) + p_knn,
+						f:
+							this.calc_distance(
+								actual.geometry.coordinates,
+								final.geometry.coordinates
+							) + p_knn,
 						father: actual.properties.name
 					}
 				];
@@ -286,34 +293,44 @@ class astarController {
 						band = true;
 						break;
 					} else {
-						
 						for (const iterator of actual.properties.childrens) {
 							let child = await Stops.findOne({ 'properties.id': iterator.id });
 							if (child != null) {
-								if (closed.filter(close => close.properties.id == iterator.id).length == 0) {
-									if(sim_stations.findIndex(i => i.station == iterator.id)!= -1){
+								if (
+									closed.filter(close => close.properties.id == iterator.id)
+										.length == 0
+								) {
+									if (sim_stations.findIndex(i => i.station == iterator.id) != -1) {
 										let pos = sim_stations.findIndex(i => i.station == iterator.id);
 										p_knn = sim_stations[pos].afluency;
-									}
-									else{
+									} else {
 										p_knn = 0;
 									}
-									let g_child = this.calc_distance(actual.geometry.coordinates,child.geometry.coordinates);
-									h = this.calc_distance(child.geometry.coordinates,final.geometry.coordinates);
+									let g_child = this.calc_distance(
+										actual.geometry.coordinates,
+										child.geometry.coordinates
+									);
+									h = this.calc_distance(
+										child.geometry.coordinates,
+										final.geometry.coordinates
+									);
 									let f_n = h + (g + g_child) + p_knn;
 									let band_update = false;
 									for (const open of opened) {
-										if(open.station == iterator.id){
-											if(open.f > f_n){
+										if (open.station == iterator.id) {
+											if (open.f > f_n) {
 												open.f = f_n;
 												open.father = actual.properties.id;
 												band_update = true;
 											}
 										}
 									}
-									if(!band_update)
-									{
-										opened.push({station: iterator.id,f: h + (g + g_child) + p_knn,father: actual.properties.id});
+									if (!band_update) {
+										opened.push({
+											station: iterator.id,
+											f: h + (g + g_child) + p_knn,
+											father: actual.properties.id
+										});
 									}
 								}
 							}
@@ -331,9 +348,13 @@ class astarController {
 						}
 					];
 					while (father.properties.id != initial.properties.id) {
-						let aux = closed.filter(close => close.properties.id == father.properties.father);
+						let aux = closed.filter(
+							close => close.properties.id == father.properties.father
+						);
 						if (aux[0] != undefined) {
-							let geojson = aux[0].properties.childrens.filter(child => child.id == father.properties.id);
+							let geojson = aux[0].properties.childrens.filter(
+								child => child.id == father.properties.id
+							);
 							father = aux[0];
 							estaciones.push({
 								station: father.properties.id,
@@ -352,54 +373,49 @@ class astarController {
 						stops: estaciones.reverse()
 					});
 				} else {
-					res.send('pelas');
+					res.send('error');
 				}
 			}
 		} catch (error) {
 			console.log(error);
 		}
 	}
-	public async saveAfluency(req: Request, res: Response){
+	public async saveAfluency(req: Request, res: Response) {
 		console.log(req.body);
-		
-		let sim_stations = [] ;
-	
+
+		let sim_stations = [];
+
 		const station = req.body.station;
-		const afluency = (req.body.weight);
-		if(Array.isArray(station)){
+		const afluency = req.body.weight;
+		if (Array.isArray(station)) {
 			for (let index = 0; index < station.length; index++) {
 				const element = station[index];
 				const peso = afluency[index];
-				sim_stations.push({station: element, afluency:peso});
+				sim_stations.push({ station: element, afluency: peso });
 			}
-		}
-		else{
-			sim_stations.push({station: station, afluency: afluency});
+		} else {
+			sim_stations.push({ station: station, afluency: afluency });
 		}
 		console.log(sim_stations);
-		
+
 		for (const iterator of sim_stations) {
 			await AfluencyStation.update(
-				{"station": iterator.station},
+				{ station: iterator.station },
 				{
 					station: iterator.station,
 					afluency: iterator.afluency
 				},
 				{ upsert: true }
-			)
+			);
 		}
 
-
 		res.redirect('/saveAfluency');
-
 	}
 
-	public async deleteAfluency(req:Request,res:Response){
+	public async deleteAfluency(req: Request, res: Response) {
 		await AfluencyStation.remove({});
 		res.redirect('/saveAfluency');
 	}
-
-	
 }
 
 async function applyKnn(
@@ -418,7 +434,5 @@ async function applyKnn(
 	);
 	return prediction;
 }
-
-
 
 export const astar_Controller = new astarController();
